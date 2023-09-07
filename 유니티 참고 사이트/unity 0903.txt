@@ -1,0 +1,5 @@
+캐릭터 상하좌우 이동
+- https://doublejk96.tistory.com/12
+
+캐릭터 따라 카메라 이동
+- https://wikidocs.net/91307

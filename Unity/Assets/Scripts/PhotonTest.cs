@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class PhotonTest : MonoBehaviourPunCallbacks
 {
-    public UnityEngine.UI.Text participant;
-    public UnityEngine.UI.Text log;
+    public Text participant;
+    public Text log;
     string nickname;
+    public Text nicknameText;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         Screen.SetResolution(1080, 1920, false);//pc 실행 시 해상도 설정
         PhotonNetwork.ConnectUsingSettings();//포톤 연결 설정
         nickname=  PlayerPrefs.GetString("name");
-
+        GameObject.Find("Canvas/NomalChatting").SetActive(false);
+        nicknameText.text = nickname;
     }
 
     public override void OnConnectedToMaster()

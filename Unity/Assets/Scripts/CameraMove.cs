@@ -12,7 +12,8 @@ public class CameraMove : MonoBehaviour
     }
     void Update()
     {
-        transform.position = Vector2.Lerp(transform.position, AT.position, 10f * Time.deltaTime);
+        //transform.position = Vector2.Lerp(transform.position, AT.position, 10f * Time.deltaTime);
+        transform.position = Vector2.Lerp(transform.position, AT.position, 20f * Time.deltaTime);
         transform.Translate(0, 0, -10); //카메라를 원래 z축으로 이동
     }
 }

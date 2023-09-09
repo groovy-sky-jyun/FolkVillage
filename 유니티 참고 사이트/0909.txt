@@ -1,0 +1,6 @@
+캐릭터 애니메이션
+- https://www.youtube.com/watch?v=vizfd1TeRMI
+좌우반전
+- https://maeum123.tistory.com/82
+
+- https://doc.photonengine.com/ko-kr/pun/current/demos-and-tutorials/pun-basics-tutorial/player-camera-work

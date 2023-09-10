@@ -5,35 +5,21 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 
-public class PhotonTest : MonoBehaviourPunCallbacks
+public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public Text participant;
     public Text log;
     string nickname;
-    public Text nicknameText;
     [Tooltip("The prefab to use for representing the player")]
-    public GameObject playerPrefab;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
         Screen.SetResolution(1080, 1920, false);//pc 실행 시 해상도 설정
         PhotonNetwork.ConnectUsingSettings();//포톤 연결 설정
         nickname=  PlayerPrefs.GetString("name");
         GameObject.Find("Canvas/NomalChatting").SetActive(false);
-        nicknameText.text = nickname;
-
-        if (playerPrefab == null)
-        {
-            Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
-        }
-        else
-        {
-            Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
-            // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-            PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-        }
     }
 
     public override void OnConnectedToMaster()
@@ -49,6 +35,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         updatePlayer();
         log.text +=  nickname;
         log.text += " 님이 방에 참가하였습니다\n";
+        //Resources/Player프리팹 복제
+        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {

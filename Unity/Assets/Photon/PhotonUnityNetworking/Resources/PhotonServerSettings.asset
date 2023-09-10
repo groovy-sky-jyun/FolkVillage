@@ -40,6 +40,9 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - ReceiveMsg
+  - <Update>g__FlipXRPC|9_0
+  - FlipXRPC
+  - NickNameMoveXRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

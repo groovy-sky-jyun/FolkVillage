@@ -36,7 +36,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         log.text +=  nickname;
         log.text += " 님이 방에 참가하였습니다\n";
         //Resources/Player프리팹 복제
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity);
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {

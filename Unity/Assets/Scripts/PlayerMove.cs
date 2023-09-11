@@ -10,12 +10,11 @@ using Cinemachine;
 public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
 {
     float moveX, moveY;
-    public InputField input;
+//    public InputField input;
     public Canvas canvas;
     public Text nickname;
     Animator anim;
     public PhotonView PV;
-   
     public SpriteRenderer SR;
     public Rigidbody2D RB;
     [Header("이동속도 조절")]
@@ -38,14 +37,14 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        //nickname.text = PlayerPrefs.GetString("name");
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (PV.IsMine && !input.isFocused)//inputfield에 포커스 맞춰져있으면 캐릭터 움직임 멈춤
+        //  if (PV.IsMine && !input.isFocused)//inputfield에 포커스 맞춰져있으면 캐릭터 움직임 멈춤
+        if (PV.IsMine)
         {
             //Move Value
             moveX = Input.GetAxisRaw("Horizontal") * moveSpeed;
@@ -87,13 +86,9 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
                 anim.SetBool("Run", false);
             }
 
-           
             RB.velocity = new Vector2(moveX, moveY);
-            //Debug.Log(Camera.main.WorldToScreenPoint(transform.position));
-           
-           //canvas.GetComponent<RectTransform>().anchoredPosition = new Vector2(Camera.main.WorldToScreenPoint(transform.position).x - 960, Camera.main.WorldToScreenPoint(transform.position).y - 480);
-            if(nickname.text== PhotonNetwork.NickName)
-                PV.RPC("NickNameMoveXRPC", RpcTarget.AllBuffered);
+            //Debug.Log(Camera.main.WorldToScreenPoint(transform.position)); //좌표찍기
+          
         }
         
         /* IsMine이 아닌 것들은 부드럽게 위치 동기화
@@ -110,11 +105,6 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
         else SR.flipX = false;
     }
 
-    [PunRPC]
-    void NickNameMoveXRPC()
-    {
-      nickname.GetComponent<RectTransform>().anchoredPosition = new Vector2(Camera.main.WorldToScreenPoint(transform.position).x - 960, Camera.main.WorldToScreenPoint(transform.position).y - 480);
-    }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
        /* if (stream.IsWriting)

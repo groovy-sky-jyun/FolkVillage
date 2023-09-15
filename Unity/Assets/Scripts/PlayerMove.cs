@@ -23,6 +23,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField][Range(1f, 30f)] float moveSpeed = 20f;
     private GameObject chatManager;
     string msg;
+    GameObject[]  playerGroup;
    
    // Vector3 curPos;
 
@@ -44,6 +45,12 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     {
         chatManager= GameObject.Find("ChatManager");
         transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            Debug.Log(PhotonNetwork.PlayerList[i].UserId);
+            Debug.Log("포톤 네트워크 테스트");
+        }
     }
 
     // Update is called once per frame
@@ -94,26 +101,34 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
 
             RB.velocity = new Vector2(moveX, moveY);
             //Debug.Log(Camera.main.WorldToScreenPoint(transform.position)); //좌표찍기
-            if (Input.GetKeyDown(KeyCode.Return))
+           if (Input.GetKeyDown(KeyCode.Return))
             {
                 msg = chatManager.GetComponent<ChatManager>().isNomal();
                 Debug.Log("enter key press");
                 if(msg != null)
                 {
-
                     PV.RPC("BubbleChatOn", RpcTarget.AllBuffered);
-
-
                 }
             }
+            playerGroup = GameObject.FindGameObjectsWithTag("Player");
+ 
+         for (int i = 0; i < playerGroup.Length; i++)
+            {
+                float distance = Vector2.Distance(transform.position, playerGroup[i].transform.position);
+                Debug.Log(distance);
+                if (distance > 4f)
+                {
+                    playerGroup[i].transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                    Debug.Log("distance > 4 ");
+                }
+            }
+            
         }
-      
-
         /* IsMine이 아닌 것들은 부드럽게 위치 동기화
         else if ((transform.position - curPos).sqrMagnitude >= 100) transform.position = curPos;
         else transform.position = Vector3.Lerp(transform.position, curPos, Time.deltaTime * 10);*/
     }
-
+    
     //좌우반전 동기화
     [PunRPC]
     void FlipXRPC(float axis)

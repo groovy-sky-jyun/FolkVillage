@@ -15,9 +15,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
     private ScrollRect scrollRect; //스크롤바
     private bool worldValue;
     private string msg = "";
-    //public GameObject player;
     private string msgText = "";
-
 
     void Awake()
 
@@ -28,26 +26,11 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
         PhotonNetwork.IsMessageQueueRunning = true;
         scrollRect = GameObject.Find("Canvas/WorldChatting/WorldScrollView").GetComponent<ScrollRect>();
         worldValue = true;//초기 전체채팅 모드
-                          //player 포톤뷰 가져오기
-                          //-> 포톤뷰 is mine
 
-       // player.transform.GetComponent<PlayerMove>().BubbleChatOff();
-        //transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-        // bubbleText = player.transform.Find("BubbleCanvas/Image/speechBubble").GetComponent<Text>();
-
-
-
-
-
+  
     }
     public void SendButtonOnClicked()
     {
-    
-        /*if (bubble.activeSelf)
-                 Debug.Log("setactive true");
-             else
-                 Debug.Log("setactive false");
-         */
 
         if (input.text.Equals("")) { Debug.Log("Empty"); return; }
         //bubble.enabled = true;
@@ -88,7 +71,8 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
         NchatLog.text += msg + "\n";
         return msg;
     }
-    public string isNomal()
+   
+    public string isNomal() //PlayerMove.cs --> 일반채팅 모드에 텍스트가 입력되었는지 확인 후 그렇다면 문자열 전달
     {
         if (!worldValue && msgText != "")
         {
@@ -96,8 +80,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else return null;
     }
-    
-
+   
    
     public void WorldChatOnClicked()
     {

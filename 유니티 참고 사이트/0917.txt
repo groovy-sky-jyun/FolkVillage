@@ -1,0 +1,2 @@
+애니메이션 끝나면 스크립트 실행
+- https://learnandcreate.tistory.com/511

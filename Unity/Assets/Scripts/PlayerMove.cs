@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
         if (PV.IsMine)
         {
             // 2D Ä«¸Þ¶ó
-            var CM = GameObject.Find("PlayerCamera").GetComponent<CinemachineVirtualCamera>();
+            var CM = GameObject.Find("PlayerCameraCS").GetComponent<CinemachineVirtualCamera>();
             CM.Follow = transform;
             CM.LookAt = transform;
         }
@@ -44,8 +44,8 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        chatManager= GameObject.Find("ChatManager");
-        sendTrigger = GameObject.Find("SendBtnTrigger");
+        chatManager= GameObject.Find("ChatManagerCS");
+        sendTrigger = GameObject.Find("SendBtnTriggerCS");
         transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
@@ -118,7 +118,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
          for (int i = 0; i < playerGroup.Length; i++)
             {
                 float distance = Vector2.Distance(transform.position, playerGroup[i].transform.position);
-                Debug.Log(distance);
+               // Debug.Log(distance);
                 if (distance > 4f)
                 {
                     playerGroup[i].transform.GetChild(2).GetChild(0).gameObject.SetActive(false);

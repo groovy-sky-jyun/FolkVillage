@@ -16,7 +16,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
     private bool worldValue;
     private string msg = "";
     private string msgText = "";
-
+    private GameObject sendTrigger;
     void Awake()
 
     { 
@@ -26,8 +26,8 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
         PhotonNetwork.IsMessageQueueRunning = true;
         scrollRect = GameObject.Find("Canvas/WorldChatting/WorldScrollView").GetComponent<ScrollRect>();
         worldValue = true;//초기 전체채팅 모드
+        sendTrigger = GameObject.Find("SendBtnTrigger");
 
-  
     }
     public void SendButtonOnClicked()
     {
@@ -100,15 +100,23 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
             msgText = "";
         }
     }
-   
-   
+
+    public bool IsFocusedInput()
+    {
+        if (input.isFocused)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void Update()
     {
       //GetKeyUp: 키를 눌렀다 땠을 때, 한번 true 반환
       //GetKeyDown: 키를 눌렀을 때, 딱 한번 true 반환
       //input.isFocused를 true로 하면 엔터했을때 전송안됨
       //KeyCode.Return은 Enter Key를 뜻한다.
-        if (Input.GetKeyDown(KeyCode.Return) && !input.isFocused) SendButtonOnClicked();
+        if ((Input.GetKeyDown(KeyCode.Return) && !input.isFocused)|| sendTrigger.GetComponent<SendBtnTrigger>().OnPreCull()) SendButtonOnClicked();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

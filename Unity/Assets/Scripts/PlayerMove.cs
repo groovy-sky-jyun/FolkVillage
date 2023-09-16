@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     [Header("이동속도 조절")]
     [SerializeField][Range(1f, 30f)] float moveSpeed = 20f;
     private GameObject chatManager;
+    private GameObject sendTrigger;
     string msg;
     GameObject[]  playerGroup;
    
@@ -44,6 +45,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     void Start()
     {
         chatManager= GameObject.Find("ChatManager");
+        sendTrigger = GameObject.Find("SendBtnTrigger");
         transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
@@ -56,8 +58,9 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        
         //  if (PV.IsMine && !input.isFocused)//inputfield에 포커스 맞춰져있으면 캐릭터 움직임 멈춤
-        if (PV.IsMine)
+        if (PV.IsMine&& !chatManager.GetComponent<ChatManager>().IsFocusedInput())
         {
             //Move Value
             moveX = Input.GetAxisRaw("Horizontal") * moveSpeed;
@@ -101,7 +104,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
 
             RB.velocity = new Vector2(moveX, moveY);
             //Debug.Log(Camera.main.WorldToScreenPoint(transform.position)); //좌표찍기
-           if (Input.GetKeyDown(KeyCode.Return))
+           if (Input.GetKeyDown(KeyCode.Return)|| sendTrigger.GetComponent<SendBtnTrigger>().OnPreCull())
             {
                 msg = chatManager.GetComponent<ChatManager>().isNomal();
                 Debug.Log("enter key press");

@@ -1,0 +1,9 @@
+가까워지면 말풍선 띄어지기
+- https://husk321.tistory.com/146
+
+말풍선 setactive 외부 스크립트 함수 사용하기
+- https://onecoke.tistory.com/entry/%EC%9C%A0%EB%8B%88%ED%8B%B0-prefab%EC%97%90-%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8-%ED%95%A0%EB%8B%B9
+- https://cpp11.tistory.com/8
+
+변수 동기화
+- https://goraniunity2d.blogspot.com/2019/08/pun2.html

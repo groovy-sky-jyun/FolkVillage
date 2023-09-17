@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     [Header("이동속도 조절")]
     [SerializeField][Range(1f, 30f)] float moveSpeed = 20f;
     private GameObject chatManager;
+    private GameObject sendTrigger;
     string msg;
     GameObject[]  playerGroup;
    
@@ -35,7 +36,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
         if (PV.IsMine)
         {
             // 2D 카메라
-            var CM = GameObject.Find("PlayerCamera").GetComponent<CinemachineVirtualCamera>();
+            var CM = GameObject.Find("PlayerCameraCS").GetComponent<CinemachineVirtualCamera>();
             CM.Follow = transform;
             CM.LookAt = transform;
         }
@@ -43,7 +44,8 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        chatManager= GameObject.Find("ChatManager");
+        chatManager = GameObject.Find("ChatManagerCS");
+        sendTrigger = GameObject.Find("SendBtnTriggerCS");
         transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
@@ -51,13 +53,22 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log(PhotonNetwork.PlayerList[i].UserId);
             Debug.Log("포톤 네트워크 테스트");
         }
-    }
 
+        if (PV.IsMine)
+        {
+            //AudioListener.volum = 1; //볼륨키워주기
+        }
+        else
+        {
+            GetComponentInChildren<AudioListener>().enabled = false;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        
         //  if (PV.IsMine && !input.isFocused)//inputfield에 포커스 맞춰져있으면 캐릭터 움직임 멈춤
-        if (PV.IsMine)
+        if (PV.IsMine&& !chatManager.GetComponent<ChatManager>().IsFocusedInput())
         {
             //Move Value
             moveX = Input.GetAxisRaw("Horizontal") * moveSpeed;
@@ -101,7 +112,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
 
             RB.velocity = new Vector2(moveX, moveY);
             //Debug.Log(Camera.main.WorldToScreenPoint(transform.position)); //좌표찍기
-           if (Input.GetKeyDown(KeyCode.Return))
+           if (Input.GetKeyDown(KeyCode.Return)|| sendTrigger.GetComponent<SendBtnTrigger>().OnPreCull())
             {
                 msg = chatManager.GetComponent<ChatManager>().isNomal();
                 Debug.Log("enter key press");
@@ -115,7 +126,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
          for (int i = 0; i < playerGroup.Length; i++)
             {
                 float distance = Vector2.Distance(transform.position, playerGroup[i].transform.position);
-                Debug.Log(distance);
+               // Debug.Log(distance);
                 if (distance > 4f)
                 {
                     playerGroup[i].transform.GetChild(2).GetChild(0).gameObject.SetActive(false);

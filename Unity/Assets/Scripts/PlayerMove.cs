@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        chatManager= GameObject.Find("ChatManagerCS");
+        chatManager = GameObject.Find("ChatManagerCS");
         sendTrigger = GameObject.Find("SendBtnTriggerCS");
         transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
 
@@ -53,8 +53,16 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log(PhotonNetwork.PlayerList[i].UserId);
             Debug.Log("포톤 네트워크 테스트");
         }
-    }
 
+        if (PV.IsMine)
+        {
+            //AudioListener.volum = 1; //볼륨키워주기
+        }
+        else
+        {
+            GetComponentInChildren<AudioListener>().enabled = false;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

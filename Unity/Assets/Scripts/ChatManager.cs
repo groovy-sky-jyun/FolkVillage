@@ -26,7 +26,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
         PhotonNetwork.IsMessageQueueRunning = true;
         scrollRect = GameObject.Find("Canvas/WorldChatting/WorldScrollView").GetComponent<ScrollRect>();
         worldValue = true;//초기 전체채팅 모드
-        sendTrigger = GameObject.Find("SendBtnTrigger");
+        sendTrigger = GameObject.Find("SendBtnTriggerCS");
 
     }
     public void SendButtonOnClicked()

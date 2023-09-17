@@ -16,7 +16,7 @@ MonoBehaviour:
     AppIdRealtime: 1af63731-0e5c-4cde-9d61-7d98dd4f4658
     AppIdFusion: 
     AppIdChat: 
-    AppIdVoice: 
+    AppIdVoice: d659ad0b-fa8d-49a5-a2d1-878bc0935727
     AppVersion: 
     UseNameServer: 1
     FixedRegion: 
@@ -28,26 +28,25 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: jp
+  DevRegion: 
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - CantHearYou
+  - ChangeColour
   - ClickRpc
   - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - ReceiveMsg
-  - <Update>g__FlipXRPC|9_0
-  - FlipXRPC
-  - NickNameMoveXRPC
-  - NomalReceiveMsg
-  - WorldReceiveMsg
-  - CloseChatBox
+  - HeresWhy
   - BubbleChatOff
   - BubbleChatOn
+  - DestroySpaceship
+  - Fire
+  - FlipXRPC
+  - NomalReceiveMsg
+  - RespawnSpaceship
+  - WorldReceiveMsg
   DisableAutoOpenWizard: 1
   ShowSettings: 1
-  DevRegionSetOnce: 1
+  DevRegionSetOnce: 0

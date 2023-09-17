@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using Cinemachine;
-using Photon.Pun.Demo.PunBasics;
+
 
 public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -25,8 +25,8 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
     private GameObject sendTrigger;
     string msg;
     GameObject[]  playerGroup;
-   
-   // Vector3 curPos;
+
+    // Vector3 curPos;
 
     void Awake()
     {
@@ -50,18 +50,18 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
-            Debug.Log(PhotonNetwork.PlayerList[i].UserId);
-            Debug.Log("포톤 네트워크 테스트");
+           // Debug.Log(PhotonNetwork.PlayerList[i].ActorNumber);
+            //Debug.Log("포톤 네트워크 테스트: ");
         }
-
-        if (PV.IsMine)
+        /*if (PV.IsMine)
         {
             //AudioListener.volum = 1; //볼륨키워주기
+            //Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
         }
         else
         {
             GetComponentInChildren<AudioListener>().enabled = false;
-        }
+        }*/
     }
     // Update is called once per frame
     void Update()
@@ -113,24 +113,28 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
             RB.velocity = new Vector2(moveX, moveY);
             //Debug.Log(Camera.main.WorldToScreenPoint(transform.position)); //좌표찍기
            if (Input.GetKeyDown(KeyCode.Return)|| sendTrigger.GetComponent<SendBtnTrigger>().OnPreCull())
-            {
+           {
                 msg = chatManager.GetComponent<ChatManager>().isNomal();
-                Debug.Log("enter key press");
+                //Debug.Log("enter key press");
                 if(msg != null)
                 {
                     PV.RPC("BubbleChatOn", RpcTarget.AllBuffered);
                 }
-            }
-            playerGroup = GameObject.FindGameObjectsWithTag("Player");
- 
-         for (int i = 0; i < playerGroup.Length; i++)
+           }
+           playerGroup = GameObject.FindGameObjectsWithTag("Player");
+            int localNum = PhotonNetwork.LocalPlayer.ActorNumber;
+            for (int i = 0; i < playerGroup.Length; i++)
             {
-                float distance = Vector2.Distance(transform.position, playerGroup[i].transform.position);
-               // Debug.Log(distance);
-                if (distance > 4f)
+                int num = PhotonNetwork.PlayerList[i].ActorNumber;
+                if ( num!= localNum)
                 {
-                    playerGroup[i].transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-                    Debug.Log("distance > 4 ");
+                    float distance = Vector2.Distance(transform.position, playerGroup[i].transform.position);
+                    //Debug.Log("distance("+ localNum + ", "+ num + "): " + distance);
+                    if (distance > 4f)
+                    {
+                        playerGroup[i].transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                        Debug.Log("distance > 4 ");
+                    }
                 }
             }
             

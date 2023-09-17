@@ -1,2 +1,9 @@
 애니메이션 끝나면 스크립트 실행
 - https://learnandcreate.tistory.com/511
+
+recorder component option
+- https://doc.photonengine.com/ko-kr/voice/current/getting-started/recorder
+
+voice group
+- https://forum.photonengine.com/discussion/9757/help-with-audio-groups
+- https://doc.photonengine.com/ko-kr/voice/v1/getting-started/voice-for-pun

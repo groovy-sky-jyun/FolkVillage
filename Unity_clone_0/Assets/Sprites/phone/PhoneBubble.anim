@@ -103,7 +103,8 @@ AnimationClip:
   - time: 0.8333333
     functionName: OpenPhone
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 25d264f8b63acf349aa53c5d49873004,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

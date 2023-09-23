@@ -1,0 +1,2 @@
+mysql 서버
+- https://foreverhappiness.tistory.com/94#Apache24%20%EC%84%A4%EC%B9%98

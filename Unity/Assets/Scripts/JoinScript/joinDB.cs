@@ -14,13 +14,14 @@ public class joinDB : MonoBehaviour
     public InputField input_nickname;
     string input_gender;
 
-    string CreateURL = "http://localhost/unity.php";
+    string CreateURL = "http://localhost/join.php";
 
 public void joinBtn()
     {
         if (input_id.text != null && input_pwd.text != null && input_email.text != null && input_nickname.text != null && input_gender != null)
         {
-            CreateUser(input_id.text, input_pwd.text, input_nickname.text, input_email.text, input_gender);
+            StartCoroutine(CreateUser(input_id.text, input_pwd.text, input_nickname.text, input_email.text, input_gender));
+
         }
         else
         {
@@ -31,11 +32,11 @@ public void joinBtn()
     {
         input_gender = "1";
     }
-    public void clickMane()
+    public void clickMan()
     {
         input_gender = "0";
     }
-   public void CreateUser(string id, string pw, string nickname, string email, string gender )
+    IEnumerator CreateUser(string id, string pw, string nickname, string email, string gender )
     {
         WWWForm form = new WWWForm();
         form.AddField("idPost", id);
@@ -45,7 +46,9 @@ public void joinBtn()
         form.AddField("genderPost", gender);
 
         WWW www = new WWW(CreateURL, form);
-        Debug.Log("회원가입 성공");
+        
+        yield return www;
+        Debug.Log(www.text);
         SceneManager.LoadScene("Login");
     }
  

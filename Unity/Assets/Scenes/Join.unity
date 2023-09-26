@@ -882,8 +882,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2011169494}
-        m_TargetAssemblyTypeName: DBconnect, Assembly-CSharp
-        m_MethodName: clickMane
+        m_TargetAssemblyTypeName: joinDB, Assembly-CSharp
+        m_MethodName: clickMan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

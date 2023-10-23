@@ -5,7 +5,7 @@ using UnityEngine;
 using Photon.Realtime;
 using UnityEngine.UI;
 
-public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
+public class ChatManager: MonoBehaviourPunCallbacks, IPunObservable
 {
     //public List<string> chatList = new List<string>();
     public Button sendBtn;

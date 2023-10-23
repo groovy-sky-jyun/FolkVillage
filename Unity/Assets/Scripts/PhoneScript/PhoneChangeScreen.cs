@@ -11,8 +11,9 @@ public class PhoneChangeScreen : MonoBehaviour
     GameObject friend_list = null;
     GameObject friend_search = null;
     GameObject friend_add = null;
-    // GameObject call = null;
-    // GameObject message = null;
+    GameObject call_list = null;
+    GameObject message_list = null;
+    GameObject message_record = null;
 
     void Start()
     {
@@ -32,6 +33,15 @@ public class PhoneChangeScreen : MonoBehaviour
 
         friend_add = transform.Find("FriendAddPanel").gameObject;
         friend_add.SetActive(false);
+
+        call_list = transform.Find("CallListPanel").gameObject;
+        call_list.SetActive(false);
+
+        message_list = transform.Find("MessageListPanel").gameObject;
+        message_list.SetActive(false);
+
+        message_record = transform.Find("MessageRecordPanel").gameObject;
+        message_record.SetActive(false);
     }
 
    public void FriendListOnClick()
@@ -47,6 +57,15 @@ public class PhoneChangeScreen : MonoBehaviour
 
         friend_add = transform.Find("FriendAddPanel").gameObject;
         friend_add.SetActive(false);
+
+        call_list = transform.Find("CallListPanel").gameObject;
+        call_list.SetActive(false);
+
+        message_list = transform.Find("MessageListPanel").gameObject;
+        message_list.SetActive(false);
+
+        message_record = transform.Find("MessageRecordPanel").gameObject;
+        message_record.SetActive(false);
     }
 
     public void FriendSearchOnClick()
@@ -62,6 +81,15 @@ public class PhoneChangeScreen : MonoBehaviour
 
         friend_add = transform.Find("FriendAddPanel").gameObject;
         friend_add.SetActive(false);
+
+        call_list = transform.Find("CallListPanel").gameObject;
+        call_list.SetActive(false);
+
+        message_list = transform.Find("MessageListPanel").gameObject;
+        message_list.SetActive(false);
+
+        message_record = transform.Find("MessageRecordPanel").gameObject;
+        message_record.SetActive(false);
     }
 
     public void FriendAddOnClick()
@@ -77,9 +105,89 @@ public class PhoneChangeScreen : MonoBehaviour
 
         friend_add = transform.Find("FriendAddPanel").gameObject;
         friend_add.SetActive(true);
+
+        call_list = transform.Find("CallListPanel").gameObject;
+        call_list.SetActive(false);
+
+        message_list = transform.Find("MessageListPanel").gameObject;
+        message_list.SetActive(false);
+
+        message_record = transform.Find("MessageRecordPanel").gameObject;
+        message_record.SetActive(false);
     }
-    void Update()
+
+    public void MessageListOnClick()
     {
-        
+        main = transform.Find("MainPanel").gameObject;
+        main.SetActive(false);
+
+        friend_list = transform.Find("FriendListPanel").gameObject;
+        friend_list.SetActive(false);
+
+        friend_search = transform.Find("FriendSearchPanel").gameObject;
+        friend_search.SetActive(false);
+
+        friend_add = transform.Find("FriendAddPanel").gameObject;
+        friend_add.SetActive(false);
+
+        call_list = transform.Find("CallListPanel").gameObject;
+        call_list.SetActive(false);
+
+        message_list = transform.Find("MessageListPanel").gameObject;
+        message_list.SetActive(true);
+
+        message_record = transform.Find("MessageRecordPanel").gameObject;
+        message_record.SetActive(false);
     }
+
+    public void MessageRecordOnClick()
+    {
+        main = transform.Find("MainPanel").gameObject;
+        main.SetActive(false);
+
+        friend_list = transform.Find("FriendListPanel").gameObject;
+        friend_list.SetActive(false);
+
+        friend_search = transform.Find("FriendSearchPanel").gameObject;
+        friend_search.SetActive(false);
+
+        friend_add = transform.Find("FriendAddPanel").gameObject;
+        friend_add.SetActive(false);
+
+        call_list = transform.Find("CallListPanel").gameObject;
+        call_list.SetActive(false);
+
+        message_list = transform.Find("MessageListPanel").gameObject;
+        message_list.SetActive(false);
+
+        message_record = transform.Find("MessageRecordPanel").gameObject;
+        message_record.SetActive(true);
+    }
+
+    public void CallListOnClick()
+    {
+        main = transform.Find("MainPanel").gameObject;
+        main.SetActive(false);
+
+        friend_list = transform.Find("FriendListPanel").gameObject;
+        friend_list.SetActive(false);
+
+        friend_search = transform.Find("FriendSearchPanel").gameObject;
+        friend_search.SetActive(false);
+
+        friend_add = transform.Find("FriendAddPanel").gameObject;
+        friend_add.SetActive(false);
+
+        call_list = transform.Find("CallListPanel").gameObject;
+        call_list.SetActive(true
+            );
+
+        message_list = transform.Find("MessageListPanel").gameObject;
+        message_list.SetActive(false);
+
+        message_record = transform.Find("MessageRecordPanel").gameObject;
+        message_record.SetActive(false);
+
+    }
+
 }

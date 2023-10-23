@@ -23,7 +23,7 @@ public class FriendApplyCheck : MonoBehaviour
     void Start()
     {
         user_id = PlayerPrefs.GetString("user_id");
-        Debug.Log(user_id);
+        //Debug.Log(user_id);
         alarm_text.gameObject.SetActive(true);
         scroll_view.gameObject.SetActive(false);
         alarm_image1.gameObject.SetActive(false);

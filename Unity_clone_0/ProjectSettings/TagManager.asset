@@ -12,6 +12,8 @@ TagManager:
   - MessageListPanel
   - CallListPanel
   - MessageRecordPanel
+  - Coin
+  - CallingTag
   layers:
   - Default
   - TransparentFX

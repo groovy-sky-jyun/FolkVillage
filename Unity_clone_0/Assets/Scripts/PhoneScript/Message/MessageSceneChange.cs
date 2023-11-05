@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class MessageSceneChange : MonoBehaviour
 {
-   
+    public GameObject nickname_txt;
     string friendNickName;
     GameObject main = null;
     GameObject friend_list = null;
@@ -19,12 +19,13 @@ public class MessageSceneChange : MonoBehaviour
     GameObject message_record = null;
     public void MessageSendBtnOnClick()
     {
-        //클릭한 객체 가져오기
+        /*클릭한 객체 가져오기
         GameObject messageIconObject = EventSystem.current.currentSelectedGameObject;
         //부모 객체 가져오기
         GameObject parentFriendListBtn = messageIconObject.transform.parent.gameObject;
         //해당 친구 프로필의 닉네임 가져오기->닉네임 설정
-        friendNickName = parentFriendListBtn.GetComponentInChildren<Text>().text;
+        friendNickName = parentFriendListBtn.GetComponentInChildren<Text>().text;*/
+        friendNickName = nickname_txt.GetComponent<Text>().text;
         //친구 닉네임 게임 내 저장
         PlayerPrefs.SetString("messageFriend", friendNickName);
         Debug.Log(friendNickName);

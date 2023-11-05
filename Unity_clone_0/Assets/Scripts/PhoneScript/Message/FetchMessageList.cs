@@ -113,7 +113,7 @@ public class FetchMessageList : MonoBehaviour
 
         //친구 닉네임 userinfo DB에서 가져옴
         string nickname = www.downloadHandler.text;
-        Debug.Log(nickname);
+        Debug.Log("readCheck: " + str[1]);
         if (nickname != "fail")
         {
             Debug.Log("Prefab 생성");
@@ -126,13 +126,13 @@ public class FetchMessageList : MonoBehaviour
             GameObject time_obj = instance.gameObject.transform.GetChild(4).gameObject;
             time_obj.GetComponent<Text>().text = str[3];
             GameObject alarm_obj = instance.gameObject.transform.GetChild(1).gameObject;
-            if (str[4] == "1")
+            if (str[1]== user_id&&str[4] == "0")
             {
-                alarm_obj.SetActive(false);
+                alarm_obj.SetActive(true);
             }
             else
             {
-                alarm_obj.SetActive(true);
+                alarm_obj.SetActive(false);
             }
         }
         else

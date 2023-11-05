@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -11,6 +12,8 @@ public class FetchTableNumber : MonoBehaviour
 {
     public GameObject prefab_you;
     public GameObject prefab_me;
+    public GameObject prefab_heart_you;
+    public GameObject prefab_heart_me;
     public Transform parent;
     int table_number;
     int message_count;
@@ -100,22 +103,24 @@ public class FetchTableNumber : MonoBehaviour
 
         WWWForm form = new WWWForm();
         form.AddField("numberPost", number);
-
+        
 
         UnityWebRequest www = UnityWebRequest.Post(MessageRecordDB, form);
 
         yield return www.SendWebRequest();
         string text = www.downloadHandler.text;
+        Debug.Log("messageRecord Test: " + text);
         if (text != "fail")
         {
             //str[0]="id,text,time,order,check" 문장이 들어가 있다.
             string[]str=text.Split("/");
-            recordTable = new string[message_count][];
+            recordTable = new string[str.Length - 1][];
             for (int i=0;i< message_count; i++)
             {
-                //arr[0]=id, arr[1]=text, arr[2]=time, arr[3]=order, arr[4]=check
+                //arr[0]=sender_id, arr[1]=message_text, arr[2]=message_time, arr[3]=message_order, arr[4]=read_check
                 string[] arr = str[i].Split(',');
                recordTable[i] = arr; //message_order순으로 배열에 추가/default=1이라서 -1해줌
+                
             }//int.Parse(arr[3])-1
         }
         else
@@ -123,15 +128,32 @@ public class FetchTableNumber : MonoBehaviour
 
         for (int i = 0; i < message_count; i++)
         {
+            recordTable[i][0] = recordTable[i][0].Trim();
+            Debug.Log(recordTable[i][0]);
             if (recordTable[i][0]== user_id)//내가 보낸 프리팹 전송
             {
-                GameObject instance = Instantiate(prefab_me, parent);
-                instance.GetComponentInChildren<Text>().text = recordTable[i][1];//문자 내용 입력
+                if (recordTable[i][1] == "sendHeart_gift")//내가 보낸 선물 프리팹
+                {
+                    GameObject instance_gift = Instantiate(prefab_heart_me, parent);
+                }
+                else//내가 보낸 메시지 프리팹
+                {
+                    GameObject instance = Instantiate(prefab_me, parent);
+                    instance.GetComponentInChildren<Text>().text = recordTable[i][1];//문자 내용 입력
+                }
             }
+               
             else
             {
-                GameObject instance = Instantiate(prefab_you, parent);
-                instance.GetComponentInChildren<Text>().text = recordTable[i][1];//문자 내용 입력
+                if (recordTable[i][1] == "sendHeart_gift")//상대가 보낸 선물 프리팹
+                {
+                    GameObject instance_gift = Instantiate(prefab_heart_you, parent);
+                }
+                else
+                {//상대가 보낸 메시지 프리팹
+                    GameObject instance = Instantiate(prefab_you, parent);
+                    instance.GetComponentInChildren<Text>().text = recordTable[i][1];//문자 내용 입력
+                }
             }
            
         }
@@ -142,30 +164,29 @@ public class FetchTableNumber : MonoBehaviour
     private void CheckDB()
     {
         
-        StartCoroutine(CheckRecordDB(table_number, user_id, friend_id));
+        StartCoroutine(CheckRecordDB(table_number, user_id));
     }
-    IEnumerator CheckRecordDB(int number, string user_id, string friend_id)
+    IEnumerator CheckRecordDB(int number, string user_id)
     {
         while (true)
         {
             WWWForm form = new WWWForm();
             form.AddField("numberPost", number);
-
+            form.AddField("userIDPost", user_id);
 
             UnityWebRequest www = UnityWebRequest.Post(MessageUpdateDB, form);
             //Debug.Log("CheckRecordDB start");
             yield return www.SendWebRequest();
             string text = www.downloadHandler.text;
-            text= text.Replace("\n","");
             text=text.Trim();
 
-            if (text != "fail")
+            if (text != "fail"&&text!="\n")
             {
                
-                //str[0]="id,text,time,order,check" 문장이 들어가 있다.
+                //str[0]="sender_id,text,time,order,check" 문장이 들어가 있다.
                 str2 = text.Split("/");
 
-               
+                Debug.Log("Str2 test: " + str2[0]+ "str2.length(): "+(str2.Length-1));
                 recordTable2 = new string[str2.Length-1][];
                 for (int i = 0; i < str2.Length-1; i++)
                 {
@@ -177,17 +198,9 @@ public class FetchTableNumber : MonoBehaviour
                
                 for (int i = 0; i < str2.Length - 1; i++)
                 {
-                    if (recordTable2[i][0] == user_id)//내가 보낸 프리팹 전송
-                    {
-                        GameObject instance2 = Instantiate(prefab_me, parent);
-                        instance2.GetComponentInChildren<Text>().text = recordTable2[i][1];//문자 내용 입력
-                    }
-                    else if (recordTable2[i][0]== friend_id)
-                    {
-                        GameObject instance2 = Instantiate(prefab_you, parent);
-                        instance2.GetComponentInChildren<Text>().text = recordTable2[i][1];//문자 내용 입력
-                    }
-
+                    //상대방 문자 보내는 프리팹 생성
+                   GameObject instance2 = Instantiate(prefab_you, parent);
+                   instance2.GetComponentInChildren<Text>().text = recordTable2[i][1];//문자 내용 입력
                 }
                 text = "fail";
             }

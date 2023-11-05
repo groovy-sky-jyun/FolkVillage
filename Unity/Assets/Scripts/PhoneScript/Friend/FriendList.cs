@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UIElements;
 using UnityEngine.UI;
 using Photon.Pun;
 
@@ -66,6 +65,7 @@ public class FriendList : MonoBehaviour
                 {
                     instance.transform.GetChild(0).gameObject.SetActive(false);
                     instance.transform.GetChild(1).gameObject.SetActive(true);
+                    instance.transform.GetChild(1).gameObject.GetComponent<Button>().interactable = false;
                 }
             }
         }

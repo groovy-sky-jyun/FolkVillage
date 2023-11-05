@@ -13,6 +13,9 @@ public class MessageSend : MonoBehaviour
     string user_id;
     string friend_id;
     string MessageSendURL = "http://localhost/messageSend.php";
+    public Transform parent;
+    public GameObject prefab_me;
+
 
     // Update is called once per frame
     public void  SendMessageBtn()
@@ -43,7 +46,9 @@ public class MessageSend : MonoBehaviour
 
         yield return www.SendWebRequest();
         string text = www.downloadHandler.text;
-
+        //내가 문자 보내는 프리팹 생성
+        GameObject instance2 = Instantiate(prefab_me, parent);
+        instance2.GetComponentInChildren<Text>().text = msg;//문자 내용 입력
         //inputfield 초기화
         message.text = "";
     }

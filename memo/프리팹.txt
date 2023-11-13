@@ -1,0 +1,45 @@
+프리팹 부모 밑에 생성
+public GameObject prefab;
+public Transform parent;
+GameObject instance = Instantiate(prefab, parent); // 부모 지정
+
+프리팹 속성으로 접근
+instance.GetComponentInChildren<Text>().text=arr[i++];//짝수는 닉네임
+
+프리팹 인덱스로 접근
+instance.transform.GetChild(0).gameObject.SetActive(true);
+
+게임 내에 저장
+PlayerPrefs.SetString("key","value");
+user_id = PlayerPrefs.GetString("user_id");
+
+
+버튼을 눌렀을때 눌린 오브젝트 가져오기
+https://yoonstone-games.tistory.com/70
+GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+clickObject.GetComponentInChildren<Text>().text);
+
+부모 오브젝트 찾기
+public GameObject A;
+GameObject parent = A.transform.parent;
+
+특정 오브젝트를 찾을 경우에는 비활성화돼있으면 찾을 수 없다.
+
+자식오브젝트를 찾는 경우
+- 부모 오브젝트는 활성화가 되어 있어야 한다.
+- 자식 오브젝트는 비활성화 되어 있어야 한다.
+GameObject obj1 = transform.Find("tag").gameObject;
+GameObject obj2 = transform.GetChild(0).gameObject;
+
+update()에서는 Tag를 사용하라
+GameObject.FindWithTag:오브젝트 여러개를 배열로 반환
+FindGameObjectsWithTag
+
+항상 활성화돼있는 부모오브젝트를 Find로 찾고,
+그 부모 오브젝트의 자식을 찾는다.
+
+외부 오브젝트 함수 사용
+obj.GetComponent<스크립트이름>().함수명()
+
+자식오브젝트 갯수 확인
+  int count = contentObj.gameObject.transform.childCount;

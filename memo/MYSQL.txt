@@ -1,0 +1,31 @@
+테이블 생성 및 외래키
+CREATE TABLE 테이블이름 (
+	컬럼명 컬럼속성 NOT NULL 등등,
+				,
+	FOREIGN KEY(컬럼명)
+	REFERENCES 참조테이블명(참조컬럼명)
+//만약 외래키 두개라면 한번 더 입력
+	,FOREIGN KEY(컬럼명)
+	REFERENCES 참조테이블명(참조컬럼명)
+)
+
+
+
+컬럼 값 수정
+UPDATE 테이블이름 SET 필드명='변경값' WHERE 필드명=해당값;
+"UPDATE applyfriend SET are_we_friend=1 WHERE to_user_id='".$to_user_id."' AND from_user_id='".$from_user_id."'";
+
+테이블 행 추가
+INSERT INTO 테이블명 (컬럼명,컬럼명) VALUES ('".$변수명."', '".$변수명."')";
+
+JOIN문 사용
+SELECT A.friend_id, B.nickname FROM friendlist A LEFT JOIN userinfo B ON A.friend_id=B.id WHERE A.user_id='jyun' 
+UNION 
+SELECT A.friend_id, B.nickname FROM friendlist A RIGHT JOIN userinfo B ON A.friend_id=B.id WHERE A.user_id='jyun';
+
+컬럼 추가
+ALTER TABLE 테이블명 ADD 컬럼명 데이터타입
+컬럼 삭제
+ALTER TABLE 테이블명 DROP COLUMN 컬럼명 
+컬럼 변경
+ALTER TABLE 테이블명 ALTER COLUMN 컬럼명 변경할데이터타입

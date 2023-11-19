@@ -1,0 +1,58 @@
+{
+    "furnitureList": [],
+    "wallItemList": [
+        {
+            "type": 1,
+            "sprite": {
+                "instanceID": 27782
+            },
+            "num": 0,
+            "have": true,
+            "use_check": true,
+            "price": 5
+        },
+        {
+            "type": 1,
+            "sprite": {
+                "instanceID": 27784
+            },
+            "num": 1,
+            "have": true,
+            "use_check": false,
+            "price": 5
+        }
+    ],
+    "floorItemList": [
+        {
+            "type": 2,
+            "sprite": {
+                "instanceID": 27786
+            },
+            "num": 0,
+            "have": true,
+            "use_check": false,
+            "price": 5
+        },
+        {
+            "type": 2,
+            "sprite": {
+                "instanceID": 27788
+            },
+            "num": 1,
+            "have": true,
+            "use_check": true,
+            "price": 5
+        },
+        {
+            "type": 2,
+            "sprite": {
+                "instanceID": 27790
+            },
+            "num": 2,
+            "have": true,
+            "use_check": false,
+            "price": 5
+        }
+    ],
+    "useWallItem": 0
+}

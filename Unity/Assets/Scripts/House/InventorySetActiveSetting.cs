@@ -1,3 +1,4 @@
+using ExitGames.Client.Photon;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,10 @@ public class InventorySetActiveSetting : MonoBehaviour
     public GameObject prefabParent_floor;
     public Transform parent_floor;
 
+    public GameObject furniturePrefab;
+    public Transform furniturePrefab_parent;
+    public RectTransform furniturePrefab_trans;
+
     public GameObject wall1;
     public GameObject wall2;
     public GameObject floor1;
@@ -38,6 +43,21 @@ public class InventorySetActiveSetting : MonoBehaviour
         //아이템 가져오기
         houseItemJson.GetComponent<HouseInventoryJSON>().LoadPlayerDataFromJson();
         HouseInventoryData inventoryItem = houseItemJson.GetComponent<HouseInventoryJSON>().getHouseItem();
+
+        //use_check로 furniture 기본 설정
+        for (int i = 0; i < inventoryItem.furnitureList.Length; i++)
+        {
+            if (inventoryItem.furnitureList[i].use_check)
+            {
+                GameObject furniture_prefab = Instantiate(furniturePrefab, furniturePrefab_parent); // 부모 지정
+                furniture_prefab.GetComponent<Image>().sprite = inventoryItem.furnitureList[i].sprite;
+                furniture_prefab.transform.localPosition = new Vector3(inventoryItem.furnitureList[i].x, inventoryItem.furnitureList[i].y, 0);
+                //furniture_prefab.transform.localScale = new Vector2(2, 2);
+                furniture_prefab.GetComponent<RectTransform>().sizeDelta = new Vector2(inventoryItem.furnitureList[i].width, inventoryItem.furnitureList[i].height);
+                
+            }
+        }
+
         //use_check로 wall 기본 설정
         for(int i=0;i< inventoryItem.wallItemList.Length;i++)
         {
@@ -128,12 +148,14 @@ public class InventorySetActiveSetting : MonoBehaviour
        //아이템을 소유하고 있다면 프리팹 생성
         for (int i=0;i< inventoryItem.furnitureList.Length; i++)
         {
-            if (inventoryItem.furnitureList[i].have)
+            if (inventoryItem.furnitureList[i].have && !inventoryItem.furnitureList[i].use_check)
             {
                 //비어있는 네모 프리팹
                 GameObject instance = Instantiate(itemprefab, parent_furniture); // 부모 지정
                 //네모 프리팹에 이미지 등록
                 instance.GetComponent<Image>().sprite = inventoryItem.furnitureList[i].sprite;
+                instance.GetComponent<ItemDrag>().number = i;
+                instance.GetComponent<ItemDrag>().type = 0;
             }
         }
     }
@@ -165,6 +187,7 @@ public class InventorySetActiveSetting : MonoBehaviour
                 GameObject itemCS = instance.transform.GetChild(0).gameObject;
                 itemCS.GetComponent<HouseItemPrefabClick>().num = inventoryItem.wallItemList[i].num;
                 itemCS.GetComponent<HouseItemPrefabClick>().type = inventoryItem.wallItemList[i].type;
+                instance.GetComponent<ItemDrag>().type = 1;
             }
         }
     }
@@ -196,6 +219,7 @@ public class InventorySetActiveSetting : MonoBehaviour
                 GameObject itemCS = instance.transform.GetChild(0).gameObject;
                 itemCS.GetComponent<HouseItemPrefabClick>().num = inventoryItem.floorItemList[i].num;
                 itemCS.GetComponent<HouseItemPrefabClick>().type = inventoryItem.floorItemList[i].type;
+                instance.GetComponent<ItemDrag>().type = 2;
             }
         }
     }

@@ -1,24 +1,77 @@
 {
-    "furnitureList": [],
+    "furnitureList": [
+        {
+            "type": 0,
+            "sprite": {
+                "instanceID": 27810
+            },
+            "have": true,
+            "use_check": true,
+            "price": 5,
+            "x": -679.2422485351563,
+            "y": 184.6580810546875,
+            "width": 320,
+            "height": 320
+        },
+        {
+            "type": 0,
+            "sprite": {
+                "instanceID": 27812
+            },
+            "have": true,
+            "use_check": true,
+            "price": 5,
+            "x": -283.9742431640625,
+            "y": 16.9686279296875,
+            "width": 200,
+            "height": 150
+        },
+        {
+            "type": 0,
+            "sprite": {
+                "instanceID": 27814
+            },
+            "have": true,
+            "use_check": false,
+            "price": 5,
+            "x": 0.0,
+            "y": 0.0,
+            "width": 250,
+            "height": 100
+        },
+        {
+            "type": 0,
+            "sprite": {
+                "instanceID": 27816
+            },
+            "have": true,
+            "use_check": true,
+            "price": 5,
+            "x": 278.983154296875,
+            "y": 100.8133544921875,
+            "width": 300,
+            "height": 200
+        }
+    ],
     "wallItemList": [
         {
             "type": 1,
             "sprite": {
-                "instanceID": 27782
+                "instanceID": 27818
             },
             "num": 0,
             "have": true,
-            "use_check": true,
+            "use_check": false,
             "price": 5
         },
         {
             "type": 1,
             "sprite": {
-                "instanceID": 27784
+                "instanceID": 27820
             },
             "num": 1,
             "have": true,
-            "use_check": false,
+            "use_check": true,
             "price": 5
         }
     ],
@@ -26,7 +79,7 @@
         {
             "type": 2,
             "sprite": {
-                "instanceID": 27786
+                "instanceID": 27822
             },
             "num": 0,
             "have": true,
@@ -36,7 +89,7 @@
         {
             "type": 2,
             "sprite": {
-                "instanceID": 27788
+                "instanceID": 27824
             },
             "num": 1,
             "have": true,
@@ -46,13 +99,12 @@
         {
             "type": 2,
             "sprite": {
-                "instanceID": 27790
+                "instanceID": 27826
             },
             "num": 2,
             "have": true,
             "use_check": false,
             "price": 5
         }
-    ],
-    "useWallItem": 0
+    ]
 }

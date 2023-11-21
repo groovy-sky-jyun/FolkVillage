@@ -57,6 +57,10 @@ public struct FurnitureItemDictionary {
     public bool have;
     public bool use_check;
     public int price;
+    public float x;
+    public float y;
+    public int width;
+    public int height;
 }
 [System.Serializable]
 public struct WallItemDictionary
@@ -85,7 +89,6 @@ public struct FloorItemDictionary
     public FurnitureItemDictionary[] furnitureList;
     public WallItemDictionary[] wallItemList;
     public FloorItemDictionary[] floorItemList;
-    public int useWallItem;
 
     public void SetWallFloor(int wall_num,int floor_num)
     {

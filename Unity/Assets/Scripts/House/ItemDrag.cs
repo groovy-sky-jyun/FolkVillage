@@ -12,6 +12,8 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public int number;
     public int type;
     private HouseInventoryData inventoryItem;
+    private int width;
+    private int height;
 
     private void Awake()
     {
@@ -53,11 +55,12 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (type == 0)
         {
-            // 현재 스크린상의 마우스 위치를 UI 위치로 설정 (UI가 마우스를 쫓아다니는 상태)
-            rect.localPosition = new Vector3(eventData.position.x - 960, eventData.position.y - 540, 0);
-            //rect.localScale = new Vector2(2, 2);
             rect.GetComponent<RectTransform>().sizeDelta = new Vector2(inventoryItem.furnitureList[number].width, inventoryItem.furnitureList[number].height);
-            Debug.Log(rect.localPosition + "//" + eventData.position);
+            width = inventoryItem.furnitureList[number].width / 2;
+            height = inventoryItem.furnitureList[number].height / 2;
+
+            // 현재 스크린상의 마우스 위치를 UI 위치로 설정 (UI가 마우스를 쫓아다니는 상태)
+            rect.localPosition = new Vector3(eventData.position.x - 960 - width, eventData.position.y - 540 + height, 0);
         }
         
         
@@ -71,16 +74,14 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if(type == 0)
         {
             //아이템 좌표설정
-            x = eventData.position.x - 960;
-            y = eventData.position.y - 540;
+            x = eventData.position.x - 960 - width;
+            y = eventData.position.y - 540 + height;
             rect.localPosition = new Vector3(x, y, 0);
-
             //json파일에 use_check=true설정
-            
             inventoryItem.furnitureList[number].use_check = true;
             //json파일에 x좌표, y좌표 설정
-            inventoryItem.furnitureList[number].x = x;
-            inventoryItem.furnitureList[number].y = y;
+            inventoryItem.furnitureList[number].x = x+width;
+            inventoryItem.furnitureList[number].y = y-height;
             //json파일에 변경된 정보 저장
             houseItemJson.GetComponent<HouseInventoryJSON>().SavePlayerDataToJson();
             

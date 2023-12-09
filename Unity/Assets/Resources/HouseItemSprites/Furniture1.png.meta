@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: woodChair1
+      name: woodChair
       rect:
         serializedVersion: 2
         x: 128
@@ -157,7 +157,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roundTable1
+      name: roundTable
       rect:
         serializedVersion: 2
         x: 176
@@ -199,7 +199,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roundTask1
+      name: roundTask
       rect:
         serializedVersion: 2
         x: 84
@@ -220,7 +220,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doubleSofa1
+      name: doubleSofa
       rect:
         serializedVersion: 2
         x: 88
@@ -241,7 +241,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: singleSofa1
+      name: singleSofa
       rect:
         serializedVersion: 2
         x: 144
@@ -262,7 +262,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: refrigerator1
+      name: refrigerator
       rect:
         serializedVersion: 2
         x: 35
@@ -283,7 +283,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shelf1
+      name: shelf
       rect:
         serializedVersion: 2
         x: 128
@@ -304,7 +304,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ladle1
+      name: ladle
       rect:
         serializedVersion: 2
         x: 68
@@ -325,7 +325,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rampShort1
+      name: rampShort
       rect:
         serializedVersion: 2
         x: 2
@@ -346,7 +346,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gasStove1
+      name: gasStove
       rect:
         serializedVersion: 2
         x: 65
@@ -367,7 +367,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lampLong1
+      name: lampLong
       rect:
         serializedVersion: 2
         x: 97
@@ -388,7 +388,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hangerLong1
+      name: hangerLong
       rect:
         serializedVersion: 2
         x: 49
@@ -409,7 +409,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sink1
+      name: sink
       rect:
         serializedVersion: 2
         x: 96
@@ -430,7 +430,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plant1
+      name: plant
       rect:
         serializedVersion: 2
         x: 3
@@ -451,7 +451,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bookselfDark1
+      name: bookselfDark
       rect:
         serializedVersion: 2
         x: 97
@@ -514,7 +514,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: drawers1
+      name: drawers
       rect:
         serializedVersion: 2
         x: 4
@@ -566,33 +566,33 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bookselfDark1: -1357289948
+      bookselfDark: -1357289948
       bookshelfBright1: -911915830
       bookshelfBright_mini1: -491818452
       carpetLarge1: -698483491
       carpetRound1: 271432541
       carpet_mini: 1245508559
       clock1: 111752349
-      doubleSofa1: -302599558
+      doubleSofa: -302599558
       drawer_mini1: -680967146
-      drawers1: 538947922
+      drawers: 538947922
       fireplace1: 2039575895
-      gasStove1: -1901528910
-      hangerLong1: 1143044938
-      ladle1: -809624291
-      lampLong1: 233365068
-      plant1: 713027887
-      rampShort1: -341518425
-      refrigerator1: -1861548800
+      gasStove: -1901528910
+      hangerLong: 1143044938
+      ladle: -809624291
+      lampLong: 233365068
+      plant: 713027887
+      rampShort: -341518425
+      refrigerator: -1861548800
       roundChair: -1793322679
-      roundTable1: -905546721
-      roundTask1: -66077374
-      shelf1: 869963477
-      singleSofa1: 2030830918
-      sink1: -788077734
+      roundTable: -905546721
+      roundTask: -66077374
+      shelf: 869963477
+      singleSofa: 2030830918
+      sink: -788077734
       task1: 416342584
       whiteChair1: -1183164177
-      woodChair1: 244279196
+      woodChair: 244279196
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

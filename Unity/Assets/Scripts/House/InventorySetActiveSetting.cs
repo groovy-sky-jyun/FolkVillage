@@ -50,7 +50,8 @@ public class InventorySetActiveSetting : MonoBehaviour
             if (inventoryItem.furnitureList[i].use_check)
             {
                 GameObject furniture_prefab = Instantiate(furniturePrefab, furniturePrefab_parent); // 부모 지정
-                furniture_prefab.GetComponent<Image>().sprite = inventoryItem.furnitureList[i].sprite;
+                string spriteName= "HouseItemSprites/"+inventoryItem.furnitureList[i].name; 
+                furniture_prefab.GetComponent<Image>().sprite = Resources.Load<Sprite>(spriteName);
                 furniture_prefab.transform.localPosition = new Vector3(inventoryItem.furnitureList[i].x, inventoryItem.furnitureList[i].y, 0);
                 //furniture_prefab.transform.localScale = new Vector2(2, 2);
                 furniture_prefab.GetComponent<RectTransform>().sizeDelta = new Vector2(inventoryItem.furnitureList[i].width, inventoryItem.furnitureList[i].height);
@@ -153,7 +154,8 @@ public class InventorySetActiveSetting : MonoBehaviour
                 //비어있는 네모 프리팹
                 GameObject instance = Instantiate(itemprefab, parent_furniture); // 부모 지정
                 //네모 프리팹에 이미지 등록
-                instance.GetComponent<Image>().sprite = inventoryItem.furnitureList[i].sprite;
+                string spriteName= "HouseItemSprites/" + inventoryItem.furnitureList[i].name;
+                instance.GetComponent<Image>().sprite = Resources.Load<Sprite>(spriteName);
                 instance.GetComponent<ItemDrag>().number = i;
                 instance.GetComponent<ItemDrag>().type = 0;
             }
@@ -182,7 +184,8 @@ public class InventorySetActiveSetting : MonoBehaviour
                 //비어있는 네모 프리팹
                 GameObject instance = Instantiate(itemprefab, parent_wall); // 부모 지정
                 //네모 프리팹에 이미지 등록
-                instance.GetComponent<Image>().sprite = inventoryItem.wallItemList[i].sprite;
+                string spriteName = "HouseItemSprites/" + inventoryItem.wallItemList[i].sprite_name;
+                instance.GetComponent<Image>().sprite = Resources.Load<Sprite>(spriteName);
                 //생성된 프리팹의 nun, type 넘겨주기
                 GameObject itemCS = instance.transform.GetChild(0).gameObject;
                 itemCS.GetComponent<HouseItemPrefabClick>().num = inventoryItem.wallItemList[i].num;
@@ -214,7 +217,8 @@ public class InventorySetActiveSetting : MonoBehaviour
                 //비어있는 네모 프리팹
                 GameObject instance = Instantiate(itemprefab, parent_floor); // 부모 지정
                 //네모 프리팹에 이미지 등록
-                instance.GetComponent<Image>().sprite = inventoryItem.floorItemList[i].sprite;
+                string spriteName = "HouseItemSprites/" + inventoryItem.floorItemList[i].sprite_name;
+                instance.GetComponent<Image>().sprite = Resources.Load<Sprite>(spriteName);
                 //생성된 프리팹의 nun, type 넘겨주기
                 GameObject itemCS = instance.transform.GetChild(0).gameObject;
                 itemCS.GetComponent<HouseItemPrefabClick>().num = inventoryItem.floorItemList[i].num;

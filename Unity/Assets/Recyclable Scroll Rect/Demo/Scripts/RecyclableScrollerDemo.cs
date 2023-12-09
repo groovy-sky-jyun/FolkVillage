@@ -9,16 +9,19 @@ using UnityEngine.UI;
 /// The only requirement is to inherit from IRecyclableScrollRectDataSource and implement the interface methods
 /// </summary>
 
-//Dummy Data model for demostraion
+/*/Dummy Data model for demostraion
 public struct ContactInfo
 {
     public string Name;
-    public string Gender;
-    public string id;
-}
+    public string Price;
+    public string ItemImg;
+}*/
+
 
 public class RecyclableScrollerDemo : MonoBehaviour, IRecyclableScrollRectDataSource
 {
+    public GameObject inventory_obj;
+
     [SerializeField]
     RecyclableScrollRect _recyclableScrollRect;
 
@@ -26,11 +29,12 @@ public class RecyclableScrollerDemo : MonoBehaviour, IRecyclableScrollRectDataSo
     private int _dataLength;
 
     //Dummy data List
-    private List<ContactInfo> _contactList = new List<ContactInfo>();
-
+    private List<FurnitureItemDictionary> furnitureList = new List<FurnitureItemDictionary>();
+    private HouseInventoryData item;
     //Recyclable scroll rect's data source must be assigned in Awake.
     private void Awake()
     {
+        item = inventory_obj.GetComponent<HouseInventoryJSON>().inventoryItem;
         InitData();
         _recyclableScrollRect.DataSource = this;
     }
@@ -38,16 +42,15 @@ public class RecyclableScrollerDemo : MonoBehaviour, IRecyclableScrollRectDataSo
     //Initialising _contactList with dummy data 
     private void InitData()
     {
-        if (_contactList != null) _contactList.Clear();
+        if (furnitureList != null) furnitureList.Clear();
 
-        string[] genders = { "Male", "Female" };
         for (int i = 0; i < _dataLength; i++)
         {
-            ContactInfo obj = new ContactInfo();
-            obj.Name = i + "_Name";
-            obj.Gender = genders[Random.Range(0, 2)];
-            obj.id = "item : " + i;
-            _contactList.Add(obj);
+            FurnitureItemDictionary obj = item.furnitureList[i];
+            if (!obj.have)
+            {
+                furnitureList.Add(obj);
+            }
         }
     }
 
@@ -58,7 +61,7 @@ public class RecyclableScrollerDemo : MonoBehaviour, IRecyclableScrollRectDataSo
     /// </summary>
     public int GetItemCount()
     {
-        return _contactList.Count;
+        return furnitureList.Count;
     }
 
     /// <summary>
@@ -69,7 +72,7 @@ public class RecyclableScrollerDemo : MonoBehaviour, IRecyclableScrollRectDataSo
     {
         //Casting to the implemented Cell
         var item = cell as DemoCell;
-        item.ConfigureCell(_contactList[index], index);
+        item.ConfigureCell(furnitureList[index], index);
     }
 
     #endregion

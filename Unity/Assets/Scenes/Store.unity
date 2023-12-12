@@ -2364,7 +2364,7 @@ MonoBehaviour:
     - type: 0
       num: 8
       name: plant
-      have: 1
+      have: 0
       use_check: 0
       price: 5
       x: 0

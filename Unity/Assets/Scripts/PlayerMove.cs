@@ -75,13 +75,24 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
             moveY = Input.GetAxisRaw("Vertical") * (moveSpeed - 0.5f);
 
             //Animation
-            if (moveY != 0)
+            if (moveY > 0)
             {
                 //shift key -> 속도 증가
                 if (Input.GetButton("Run")) moveY *= 1.4f;
                 anim.SetBool("Walk", false);
-                anim.SetBool("Climb", true);
+                anim.SetBool("WalkUp", true);
                 anim.SetBool("Run", false);
+                anim.SetBool("WalkDown", false);
+            }
+            else if(moveY < 0)
+            {
+                //shift key -> 속도 증가
+                if (Input.GetButton("Run")) moveY *= 1.4f;
+                anim.SetBool("Walk", false);
+                anim.SetBool("WalkUp", false);
+                anim.SetBool("WalkDown", true);
+                anim.SetBool("Run", false);
+                
             }
             else if (moveX != 0)
             {
@@ -92,21 +103,24 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
                 {   //shift key -> 속도 증가
                     moveX *= 1.5f;
                     anim.SetBool("Walk", false);
-                    anim.SetBool("Climb", false);
+                    anim.SetBool("WalkUp", false);
+                    anim.SetBool("WalkDown", false);
                     anim.SetBool("Run", true);
                    
                 }
                 else
                 {
                     anim.SetBool("Walk", true);
-                    anim.SetBool("Climb", false);
+                    anim.SetBool("WalkUp", false);
+                    anim.SetBool("WalkDown", false);
                     anim.SetBool("Run", false);
                 }
             }
             else
             {
                 anim.SetBool("Walk", false);
-                anim.SetBool("Climb", false);
+                anim.SetBool("WalkUp", false);
+                anim.SetBool("WalkDown", false);
                 anim.SetBool("Run", false);
             }
 

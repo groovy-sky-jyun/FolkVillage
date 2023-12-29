@@ -17,10 +17,10 @@
             "num": 1,
             "name": "bookshelfBright_mini",
             "have": true,
-            "use_check": false,
+            "use_check": true,
             "price": 5,
-            "x": -17.0406494140625,
-            "y": -2.2720947265625,
+            "x": -367.9007568359375,
+            "y": -213.66409301757813,
             "width": 200,
             "height": 150
         },
@@ -53,10 +53,10 @@
             "num": 4,
             "name": "gasStove",
             "have": true,
-            "use_check": false,
+            "use_check": true,
             "price": 5,
-            "x": 0.0,
-            "y": 0.0,
+            "x": -104.083984375,
+            "y": 2.74810791015625,
             "width": 200,
             "height": 200
         },
@@ -67,8 +67,8 @@
             "have": true,
             "use_check": true,
             "price": 5,
-            "x": 217.7569580078125,
-            "y": 60.238037109375,
+            "x": 194.77099609375,
+            "y": 43.969482421875,
             "width": 100,
             "height": 270
         },
@@ -100,8 +100,8 @@
             "type": 0,
             "num": 8,
             "name": "plant",
-            "have": true,
-            "use_check": true,
+            "have": false,
+            "use_check": false,
             "price": 5,
             "x": -54.88824462890625,
             "y": -118.50051879882813,
@@ -188,7 +188,7 @@
             "sprite_name": "Wall_1",
             "num": 0,
             "have": true,
-            "use_check": true,
+            "use_check": false,
             "price": 5
         },
         {
@@ -196,8 +196,8 @@
             "name": "기본 벽지2",
             "sprite_name": "Wall_2",
             "num": 1,
-            "have": false,
-            "use_check": false,
+            "have": true,
+            "use_check": true,
             "price": 5
         }
     ],
@@ -208,7 +208,7 @@
             "sprite_name": "Floor1",
             "num": 0,
             "have": true,
-            "use_check": true,
+            "use_check": false,
             "price": 5
         },
         {
@@ -216,8 +216,8 @@
             "name": "기본 바닥2",
             "sprite_name": "Floor2",
             "num": 1,
-            "have": false,
-            "use_check": false,
+            "have": true,
+            "use_check": true,
             "price": 5
         },
         {
@@ -225,7 +225,7 @@
             "name": "기본 바닥3",
             "sprite_name": "Floor3",
             "num": 2,
-            "have": false,
+            "have": true,
             "use_check": false,
             "price": 5
         }

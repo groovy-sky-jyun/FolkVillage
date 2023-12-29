@@ -11,13 +11,11 @@ public class CallingSceneChange : MonoBehaviour
 
     public void CallingBtnOnClick()
     {
-
         //화면전환
         GameObject CallObj = GameObject.Find("CallingChangeCS");
         CallObj.GetComponent<CallingSetactiveTrueImg>().SetActiveImg();
         GameObject parentObj = GameObject.Find("PhoneCanvas");
         parentObj.SetActive(false);
-
     }
 
     

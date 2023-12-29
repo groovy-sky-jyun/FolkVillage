@@ -17,6 +17,8 @@ public class ChatManager: MonoBehaviourPunCallbacks, IPunObservable
     private string msg = "";
     private string msgText = "";
     private GameObject sendTrigger;
+
+    public GameObject badWordFiltering;
     void Awake()
 
     { 
@@ -33,6 +35,11 @@ public class ChatManager: MonoBehaviourPunCallbacks, IPunObservable
     {
 
         if (input.text.Equals("")) { Debug.Log("Empty"); return; }
+        //ture 반환하면 욕설임
+        if (badWordFiltering.GetComponent<BadWordFiltering>().CheckSentance(input.text))
+        {
+            input.text = "***욕설은 사용하실 수 없습니다.***";
+        }
         //bubble.enabled = true;
         //msg: "[닉네임] 채팅메시지" 형태로 scroll view에 띄움
         //{0}:player 닉네임, {1}:사용자 inputfield.text

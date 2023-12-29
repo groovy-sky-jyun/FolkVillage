@@ -51,18 +51,25 @@ public class HouseInventoryJSON : MonoBehaviour
     }
 }
 [System.Serializable]
-public struct FurnitureItemDictionary {
+public struct FurnitureItemDictionary
+{
     public int type;//0
-    public Sprite sprite;
+    public int num;
+    public string name;
     public bool have;
     public bool use_check;
     public int price;
+    public float x;
+    public float y;
+    public int width;
+    public int height;
 }
 [System.Serializable]
 public struct WallItemDictionary
 {
     public int type;//1
-    public Sprite sprite;
+    public string name;
+    public string sprite_name;
     public int num;
     public bool have;
     public bool use_check;
@@ -72,7 +79,8 @@ public struct WallItemDictionary
 public struct FloorItemDictionary
 {
     public int type;//2
-    public Sprite sprite;
+    public string name;
+    public string sprite_name;
     public int num;
     public bool have;
     public bool use_check;
@@ -85,7 +93,6 @@ public struct FloorItemDictionary
     public FurnitureItemDictionary[] furnitureList;
     public WallItemDictionary[] wallItemList;
     public FloorItemDictionary[] floorItemList;
-    public int useWallItem;
 
     public void SetWallFloor(int wall_num,int floor_num)
     {
@@ -94,7 +101,7 @@ public struct FloorItemDictionary
             if (i == wall_num)
             {
                 wallItemList[i].use_check = true;
-            }
+            } 
             else
                 wallItemList[i].use_check = false;
         }

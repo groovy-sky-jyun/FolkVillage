@@ -10,9 +10,11 @@ using UnityEngine.UI;
 
 public class CoinSetting : MonoBehaviour
 {
-    string user_id;
+    public string user_id;
     string userDB = "http://localhost/coinSetting.php";
+    string updateDB = "http://localhost/coinUpdate.php";
     public GameObject coin_txt;
+    public int coin;
     void Start()
     {
        user_id= PlayerPrefs.GetString("user_id");
@@ -33,6 +35,36 @@ public class CoinSetting : MonoBehaviour
         {
             coin_txt.GetComponent<Text>().text = str;
             PlayerPrefs.SetString("coin",str);
+            coin = int.Parse(str);
+        }
+
+    }
+
+   public void minusCoin(int price)
+    {
+        coin -= price;
+        //userinfo 에 coin update하기
+        StartCoroutine(CoinUpdateDB(coin));
+    }
+    IEnumerator CoinUpdateDB(int coin)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("user_idPost", user_id);
+        form.AddField("user_coinPost", coin);
+        UnityWebRequest www = UnityWebRequest.Post(updateDB, form);
+
+        yield return www.SendWebRequest();
+        string str = www.downloadHandler.text;
+        
+        if (str != "fail")
+        {
+            //userinfo db에 코인 차감된거 불러오기
+            StartCoroutine(CoinDB(user_id));
+            Debug.Log(str);
+        }
+        else
+        {
+            Debug.Log("coinUpdatefail: "+str);
         }
 
     }

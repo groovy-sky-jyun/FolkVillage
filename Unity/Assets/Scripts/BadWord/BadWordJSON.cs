@@ -8,7 +8,7 @@ using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
+// using static UnityEditor.Progress;
 
 public class BadWordJSON : MonoBehaviour
 {
@@ -42,7 +42,6 @@ public class BadWordJSON : MonoBehaviour
         string jsonData = File.ReadAllText(path);
         // 이 Json데이터를 역직렬화하여 itemrData 넣어줌
         badWordList = JsonUtility.FromJson<BadWordData>(jsonData);
-        
     }
     public BadWordData getBadWordList()
     {

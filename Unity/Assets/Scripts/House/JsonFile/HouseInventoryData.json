@@ -1,5 +1,5 @@
 {
-    "furnitureList": [
+    "furnitureItemList": [
         {
             "type": 0,
             "num": 0,
@@ -7,8 +7,8 @@
             "have": true,
             "use_check": true,
             "price": 5,
-            "x": -566.8864135742188,
-            "y": 86.33941650390625,
+            "x": 249.8299102783203,
+            "y": 19.043746948242189,
             "width": 320,
             "height": 320
         },
@@ -19,8 +19,8 @@
             "have": true,
             "use_check": true,
             "price": 5,
-            "x": -367.9007568359375,
-            "y": -213.66409301757813,
+            "x": -291.33331298828127,
+            "y": -304.66668701171877,
             "width": 200,
             "height": 150
         },
@@ -31,8 +31,8 @@
             "have": true,
             "use_check": true,
             "price": 5,
-            "x": 414.656494140625,
-            "y": 9.08837890625,
+            "x": -233.33331298828126,
+            "y": -291.66668701171877,
             "width": 300,
             "height": 200
         },
@@ -43,8 +43,8 @@
             "have": true,
             "use_check": false,
             "price": 5,
-            "x": -303.323974609375,
-            "y": -2.2720947265625,
+            "x": -242.33331298828126,
+            "y": -192.66668701171876,
             "width": 120,
             "height": 100
         },
@@ -53,7 +53,7 @@
             "num": 4,
             "name": "gasStove",
             "have": true,
-            "use_check": true,
+            "use_check": false,
             "price": 5,
             "x": -104.083984375,
             "y": 2.74810791015625,
@@ -65,7 +65,7 @@
             "num": 5,
             "name": "lampLong",
             "have": true,
-            "use_check": true,
+            "use_check": false,
             "price": 5,
             "x": 194.77099609375,
             "y": 43.969482421875,
@@ -79,8 +79,8 @@
             "have": true,
             "use_check": false,
             "price": 5,
-            "x": 0.0,
-            "y": 0.0,
+            "x": -750.3333129882813,
+            "y": -171.33331298828126,
             "width": 100,
             "height": 270
         },
@@ -112,11 +112,11 @@
             "type": 0,
             "num": 9,
             "name": "roundChair",
-            "have": false,
-            "use_check": false,
+            "have": true,
+            "use_check": true,
             "price": 5,
-            "x": 0.0,
-            "y": 0.0,
+            "x": -250.33331298828126,
+            "y": -167.66668701171876,
             "width": 110,
             "height": 100
         },
@@ -185,7 +185,7 @@
         {
             "type": 1,
             "name": "기본 벽지1",
-            "sprite_name": "Wall_1",
+            "sprite_name": "Wall1",
             "num": 0,
             "have": true,
             "use_check": false,
@@ -194,7 +194,7 @@
         {
             "type": 1,
             "name": "기본 벽지2",
-            "sprite_name": "Wall_2",
+            "sprite_name": "Wall2",
             "num": 1,
             "have": true,
             "use_check": true,

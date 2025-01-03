@@ -1,2 +1,0 @@
-c#와 mysql 연결 및 사용하기
-https://vmpo.tistory.com/92

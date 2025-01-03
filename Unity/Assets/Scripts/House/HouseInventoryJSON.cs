@@ -4,11 +4,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class HouseInventoryJSON : MonoBehaviour
 {
@@ -43,15 +44,16 @@ public class HouseInventoryJSON : MonoBehaviour
         // 이 Json데이터를 역직렬화하여 itemrData 넣어줌
         inventoryItem = JsonUtility.FromJson<HouseInventoryData>(jsonData);
         
-        //Debug.Log(inventoryItem.wallItemList[0].item_name);
     }
     public HouseInventoryData getHouseItem()
     {
         return inventoryItem;
     }
 }
+
+
 [System.Serializable]
-public struct FurnitureItemDictionary
+public struct FurnitureItemDictionary 
 {
     public int type;//0
     public int num;
@@ -63,6 +65,7 @@ public struct FurnitureItemDictionary
     public float y;
     public int width;
     public int height;
+
 }
 [System.Serializable]
 public struct WallItemDictionary
@@ -90,7 +93,7 @@ public struct FloorItemDictionary
 [System.Serializable]
  public class HouseInventoryData
 {
-    public FurnitureItemDictionary[] furnitureList;
+    public FurnitureItemDictionary[] furnitureItemList;
     public WallItemDictionary[] wallItemList;
     public FloorItemDictionary[] floorItemList;
 

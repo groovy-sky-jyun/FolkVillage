@@ -16,7 +16,7 @@ public class PantsItemSetting : MonoBehaviour, ICell
     private int _cellIndex;
 
     public int pants_count = 4;
-
+    private string spriteName;
     private void Start()
     {
         //Can also be done in the inspector
@@ -28,23 +28,19 @@ public class PantsItemSetting : MonoBehaviour, ICell
     {
         _cellIndex = cellIndex;
         _contactInfo = contactInfo;
-        string spriteName = "CharacterCustom/Pants/" + contactInfo.sprite_name;
+        spriteName = "CharacterCustom/Pants/" + contactInfo.sprite_name;
         itemImage.sprite = Resources.Load<Sprite>(spriteName);
     }
 
 
     private void ButtonListener()
     {
-        for (int i = 0; i < pants_count; i++)
+        Transform pants = GameObject.Find("PlayerPants").transform.Find("Pants");
+        pants.gameObject.SetActive(true);
+        Image pantsImage = pants.gameObject.GetComponent<Image>();
+        if (pantsImage != null)
         {
-            if (_contactInfo.num == i)
-            {
-                GameObject.FindGameObjectWithTag("PantsPanel").transform.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("PantsPanel").transform.GetChild(i).gameObject.SetActive(false);
-            }
+            pantsImage.sprite = Resources.Load<Sprite>(spriteName);
         }
     }
 

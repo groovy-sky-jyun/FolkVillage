@@ -1,9 +1,0 @@
-사용자 닉네임 및 아이디
-PlayerPrefs.GetString("name");
-PlayerPrefs.GetString("user_id");
-PlayerPrefs.GetString("coin");
-
-friendlist click-> 해당 친구의 닉네임 및 아이디
-PlayerPrefs.GetString("messageFriend");
-PlayerPrefs.GetString("FriendID");
-

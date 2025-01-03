@@ -1,6 +1,7 @@
 using PolyAndCode.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 //Cell class for demo. A cell in Recyclable Scroll Rect must have a cell class inheriting from ICell.
 //The class is required to configure the cell(updating UI elements etc) according to the data during recycling of cells.
@@ -16,7 +17,7 @@ public class ShirtItemSetting : MonoBehaviour, ICell
     private int _cellIndex;
 
     public int shirt_count=4;
-
+    private string spriteName;
     private void Start()
     {
         //Can also be done in the inspector
@@ -28,23 +29,19 @@ public class ShirtItemSetting : MonoBehaviour, ICell
     {
         _cellIndex = cellIndex;
         _contactInfo = contactInfo;
-        string spriteName = "CharacterCustom/Shirt/" + contactInfo.sprite_name;
+        spriteName = "CharacterCustom/Shirt/" + contactInfo.sprite_name;
         itemImage.sprite = Resources.Load<Sprite>(spriteName);
     }
 
 
     private void ButtonListener()
     {
-        for (int i = 0; i < shirt_count; i++)
+        Transform shirt = GameObject.Find("PlayerShirt").transform.Find("Shirt");
+        shirt.gameObject.SetActive(true);
+        Image shirtImage = shirt.gameObject.GetComponent<Image>();
+        if (shirtImage != null)
         {
-            if (_contactInfo.num == i)
-            {
-                GameObject.FindGameObjectWithTag("ShirtPanel").transform.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("ShirtPanel").transform.GetChild(i).gameObject.SetActive(false);
-            }
+            shirtImage.sprite = Resources.Load<Sprite>(spriteName);
         }
     }
 

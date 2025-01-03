@@ -17,8 +17,6 @@ public class FloorItemSetting : MonoBehaviour, ICell
     public FloorItemDictionary _contactInfo;
     private int _cellIndex;
 
-    public GameObject btnCS;
-
     private void Start()
     {
         //Can also be done in the inspector
@@ -37,8 +35,8 @@ public class FloorItemSetting : MonoBehaviour, ICell
         string spriteName = "HouseItemSprites/" + contactInfo.sprite_name;
         itemImage.sprite = Resources.Load<Sprite>(spriteName);
 
-        btnCS.GetComponent<PurchaseItemBtn>().type = contactInfo.type;
-        btnCS.GetComponent<PurchaseItemBtn>().num = contactInfo.num;
+      //  btnCS.GetComponent<PurchaseItemBtn>().type = contactInfo.type;
+       // btnCS.GetComponent<PurchaseItemBtn>().num = contactInfo.num;
     }
 
 

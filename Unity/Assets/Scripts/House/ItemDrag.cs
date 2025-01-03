@@ -3,26 +3,27 @@ using UnityEngine.EventSystems;
 
 public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private Transform canvas;               // UI가 소속되어 있는 최상단의 Canvas Transform
+    private Transform insideCanvas;               // UI가 소속되어 있는 최상단의 insideCanvas Transform
     private RectTransform rect;             // UI 위치 제어를 위한 RectTransform
     private GameObject houseItemJson;
     private float x, y;
-    private GameObject inventoryPanel_1;
+    private GameObject furniturePanel;
 
     public int number;
     public int type;
     private HouseInventoryData inventoryItem;
     private int width;
     private int height;
-
+    private Canvas canvas;
     private void Awake()
     {
-        canvas = GameObject.Find("Canvas").transform;
+        insideCanvas = GameObject.Find("InsideCanvas").transform;
         rect = GetComponent<RectTransform>();
-        //canvasGroup = GetComponent<CanvasGroup>();
+        //insideCanvasGroup = GetComponent<insideCanvasGroup>();
         houseItemJson = GameObject.Find("ItemListJSON");
-        inventoryPanel_1 = GameObject.Find("InventoryPanel_1");
+        furniturePanel = GameObject.Find("FurniturePanel");
         inventoryItem = houseItemJson.GetComponent<HouseInventoryJSON>().getHouseItem();
+        canvas = GetComponentInParent<Canvas>();
     }
     public void setNum(int num)
     {
@@ -35,15 +36,15 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (type == 0)
         {
-            // canvas를 부모로 설정
-            transform.SetParent(canvas);       
+            // insideCanvas를 부모로 설정
+            transform.SetParent(insideCanvas);       
             // 부모의 자식들 중 첫번째 순서로 설정(가장 맨 뒤로 보내기)
             //transform.SetAsFirstSibling();      
             rect.anchorMin = new Vector2(0.5f, 0.5f);
             rect.anchorMax = new Vector2(0.5f, 0.5f);
             rect.pivot = new Vector2(0, 1);
             //인벤토리 숨기기
-            inventoryPanel_1.SetActive(false);
+            furniturePanel.SetActive(false);
         }
         
     }
@@ -55,12 +56,15 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (type == 0)
         {
-            rect.GetComponent<RectTransform>().sizeDelta = new Vector2(inventoryItem.furnitureList[number].width, inventoryItem.furnitureList[number].height);
-            width = inventoryItem.furnitureList[number].width / 2;
-            height = inventoryItem.furnitureList[number].height / 2;
+            rect.GetComponent<RectTransform>().sizeDelta = new Vector2(inventoryItem.furnitureItemList[number].width, inventoryItem.furnitureItemList[number].height);
+            width = inventoryItem.furnitureItemList[number].width / 2;
+            height = inventoryItem.furnitureItemList[number].height / 2;
 
-            // 현재 스크린상의 마우스 위치를 UI 위치로 설정 (UI가 마우스를 쫓아다니는 상태)
-            rect.localPosition = new Vector3(eventData.position.x - 960 - width, eventData.position.y - 540 + height, 0);
+            // 마우스 위치를 로컬 좌표로 변환
+            Vector2 localPosition;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(insideCanvas.transform as RectTransform, eventData.position, canvas.worldCamera, out localPosition);
+            // 아이템의 로컬 위치를 마우스 위치로 업데이트
+            rect.localPosition = new Vector3(localPosition.x - width, localPosition.y + height, 0);
         }
         
         
@@ -73,20 +77,24 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if(type == 0)
         {
+            // 마우스 위치를 로컬 좌표로 변환
+            Vector2 localPosition;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(insideCanvas.transform as RectTransform, eventData.position, canvas.worldCamera, out localPosition);
+
             //아이템 좌표설정
-            x = eventData.position.x - 960 - width;
-            y = eventData.position.y - 540 + height;
+            x = localPosition.x  - width;
+            y = localPosition.y + height;
             rect.localPosition = new Vector3(x, y, 0);
             //json파일에 use_check=true설정
-            inventoryItem.furnitureList[number].use_check = true;
+            inventoryItem.furnitureItemList[number].use_check = true;
             //json파일에 x좌표, y좌표 설정
-            inventoryItem.furnitureList[number].x = x+width;
-            inventoryItem.furnitureList[number].y = y-height;
+            inventoryItem.furnitureItemList[number].x = x+width;
+            inventoryItem.furnitureItemList[number].y = y-height;
             //json파일에 변경된 정보 저장
             houseItemJson.GetComponent<HouseInventoryJSON>().SavePlayerDataToJson();
             
             //인벤토리 보이기
-            inventoryPanel_1.SetActive(true);
+            furniturePanel.SetActive(true);
         }
     }
 }

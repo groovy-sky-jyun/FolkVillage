@@ -9,7 +9,7 @@ public class loginDB : MonoBehaviour
 {
     public InputField input_id;
     public InputField input_pwd;
-    string LoginURL = "http://localhost/login.php";
+    string LoginURL = "http://localhost/folkvillage/login.php";
 
    public void LoginBtn()
     {

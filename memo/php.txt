@@ -1,8 +1,0 @@
-//send_gift==0이라면 1로 값 변경
-		if($row['send_gift']=="0"){
-			$sqlUpdate="UPDATE friendlist SET send_gift=1 WHERE user_id= '".$user_id."' and  friend_id= '".$friend_id."'";
-			$resultUpdate = mysqli_query($conn, $sqlUpdate);
-			if(mysqli_num_rows($resultUpdate)>0)
-				echo "send sucess";
-			else
-				echo"fail";

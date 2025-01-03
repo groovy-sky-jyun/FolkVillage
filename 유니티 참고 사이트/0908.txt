@@ -1,6 +1,0 @@
-cavas 비/활성화
-- https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=chic1007&logNo=221411444862
-
-닉네임 캐릭터 따라다니기
-- https://keykat7.blogspot.com/2020/01/unity-rectTransform.html
-- https://forum.unity.com/threads/get-gameobjects-position-in-global-screen-space-how.1333653/

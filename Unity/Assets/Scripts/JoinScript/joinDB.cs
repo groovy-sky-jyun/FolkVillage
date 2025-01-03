@@ -14,7 +14,7 @@ public class joinDB : MonoBehaviour
     public InputField input_nickname;
     string input_gender;
 
-    string CreateURL = "http://localhost/join.php";
+    string CreateURL = "http://localhost/folkvillage/join.php";
 
 public void joinBtn()
     {

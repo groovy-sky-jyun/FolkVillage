@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+
+    [Tooltip("참여자 목록")]
     public Text participant;
     public Text log;
     string nickname;
-    [Tooltip("The prefab to use for representing the player")]
+   
     
 
     // Start is called before the first frame update

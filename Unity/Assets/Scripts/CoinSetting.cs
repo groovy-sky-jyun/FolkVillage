@@ -11,8 +11,8 @@ using UnityEngine.UI;
 public class CoinSetting : MonoBehaviour
 {
     public string user_id;
-    string userDB = "http://localhost/coinSetting.php";
-    string updateDB = "http://localhost/coinUpdate.php";
+    string userDB = "http://localhost/folkvillage/coinSetting.php";
+    string updateDB = "http://localhost/folkvillage/coinUpdate.php";
     public GameObject coin_txt;
     public int coin;
     void Start()

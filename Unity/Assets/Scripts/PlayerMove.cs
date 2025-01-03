@@ -144,7 +144,6 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     float distance = Vector2.Distance(transform.position, playerGroup[i].transform.position);
                     Debug.Log("local: " + transform.position + " /other: " + playerGroup[i].transform.position);
-                    //Debug.Log("distance("+ localNum + ", "+ num + "): " + distance);
                     if (distance > 4f)
                     {
                         playerGroup[i].transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
@@ -154,10 +153,6 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
             }
             
         }
-
-        /* IsMine이 아닌 것들은 부드럽게 위치 동기화
-        else if ((transform.position - curPos).sqrMagnitude >= 100) transform.position = curPos;
-        else transform.position = Vector3.Lerp(transform.position, curPos, Time.deltaTime * 10);*/
     }
     
     //좌우반전 동기화

@@ -3,39 +3,23 @@ using UnityEngine;
 using PolyAndCode.UI;
 using UnityEngine.UI;
 
-/// <summary>
-/// Demo controller class for Recyclable Scroll Rect. 
-/// A controller class is responsible for providing the scroll rect with datasource. Any class can be a controller class. 
-/// The only requirement is to inherit from IRecyclableScrollRectDataSource and implement the interface methods
-/// </summary>
-
-/*/Dummy Data model for demostraion
-public struct ContactInfo
-{
-    public string Name;
-    public string Price;
-    public string ItemImg;
-}*/
-
-
 public class RecyclableScrollControlFurniture : MonoBehaviour, IRecyclableScrollRectDataSource
 {
     public GameObject inventory_obj;
-
+    public ChangeItemList ItemPanel;
     [SerializeField]
     RecyclableScrollRect _recyclableScrollRect;
 
-    [SerializeField]
-    private int _dataLength;
-
     //Dummy data List
     private List<FurnitureItemDictionary> furnitureList = new List<FurnitureItemDictionary>();
+    private List<WallItemDictionary> wallList = new List<WallItemDictionary>();
+    private List<FloorItemDictionary> floorList = new List<FloorItemDictionary>();
     private HouseInventoryData item;
     //Recyclable scroll rect's data source must be assigned in Awake.
     private void OnEnable()
     {
         inventory_obj.GetComponent<HouseInventoryJSON>().LoadPlayerDataFromJson();
-        item = inventory_obj.GetComponent<HouseInventoryJSON>().inventoryItem;
+        item = inventory_obj.GetComponent<HouseInventoryJSON>().getHouseItem();
         InitData();
         _recyclableScrollRect.DataSource = this;
     }
@@ -43,27 +27,30 @@ public class RecyclableScrollControlFurniture : MonoBehaviour, IRecyclableScroll
     //Initialising _contactList with dummy data 
     private void InitData()
     {
-        if (furnitureList != null) furnitureList.Clear();
-        Debug.Log(_dataLength);
-        for (int i = 0; i < _dataLength; i++)
-        {
-            FurnitureItemDictionary obj = item.furnitureList[i];
-            if (!obj.have)
-            {
-                furnitureList.Add(obj);
-                Debug.Log(obj.name);
-            }
-        }
+        
+
     }
 
-    #region DATA-SOURCE
+    
 
     /// <summary>
     /// Data source method. return the list length.
     /// </summary>
     public int GetItemCount()
     {
-        return furnitureList.Count;
+        if (ItemPanel.furnitureItem_panel.activeSelf)
+        {
+            return furnitureList.Count;
+        }
+        else if (ItemPanel.wallItem_panel.activeSelf)
+        {
+            return wallList.Count;
+        }
+        else
+        {
+            return floorList.Count;
+        }
+
     }
 
     /// <summary>
@@ -72,10 +59,25 @@ public class RecyclableScrollControlFurniture : MonoBehaviour, IRecyclableScroll
     /// </summary>
     public void SetCell(ICell cell, int index)
     {
-        //Casting to the implemented Cell
-        var item = cell as FurnitureItemSetting;
-        item.ConfigureCell(furnitureList[index], index);
+        if (ItemPanel.furnitureItem_panel.activeSelf)
+        {
+            //Casting to the implemented Cell
+            var item = cell as FurnitureSetting;
+            item.ConfigureCell(furnitureList[index], index);
+        }
+        else if (ItemPanel.wallItem_panel.activeSelf)
+        {
+            //Casting to the implemented Cell
+            var item = cell as WallSetting;
+           // item.ConfigureCell(wallList[index], index);
+        }
+        else
+        {
+            //Casting to the implemented Cell
+            var item = cell as FloorSetting;
+           // item.ConfigureCell(floorList[index], index);
+        }
+        
     }
 
-    #endregion
 }

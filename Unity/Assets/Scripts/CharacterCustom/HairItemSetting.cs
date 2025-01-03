@@ -16,7 +16,7 @@ public class HairItemSetting : MonoBehaviour, ICell
     private int _cellIndex;
 
     public int hair_count=4;
- 
+    private string spriteName;
 
     private void Start()
     {
@@ -30,23 +30,19 @@ public class HairItemSetting : MonoBehaviour, ICell
         _cellIndex = cellIndex;
         _contactInfo = contactInfo;
 
-        string spriteName = "CharacterCustom/Hair/" + contactInfo.sprite_name;
+        spriteName = "CharacterCustom/Hair/" + contactInfo.sprite_name;
         itemImage.sprite = Resources.Load<Sprite>(spriteName);
     }
 
 
     private void ButtonListener()
     {
-        for(int i=0;i< hair_count; i++)
+        Transform hair = GameObject.Find("PlayerHair").transform.Find("Hair");
+        hair.gameObject.SetActive(true);
+        Image hairImage = hair.gameObject.GetComponent<Image>();
+        if (hairImage != null)
         {
-            if (_contactInfo.num == i)
-            {
-                GameObject.FindGameObjectWithTag("HairPanel").transform.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("HairPanel").transform.GetChild(i).gameObject.SetActive(false);
-            }
+            hairImage.sprite = Resources.Load<Sprite>(spriteName);
         }
     }
 

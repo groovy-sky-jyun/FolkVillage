@@ -16,7 +16,7 @@ public class FaceItemSetting : MonoBehaviour, ICell
     private int _cellIndex;
 
     public int face_count=4;
- 
+    private string spriteName;
 
     private void Start()
     {
@@ -30,25 +30,18 @@ public class FaceItemSetting : MonoBehaviour, ICell
         _cellIndex = cellIndex;
         _contactInfo = contactInfo;
 
-        string spriteName = "CharacterCustom/Face/" + contactInfo.sprite_name;
+        spriteName = "CharacterCustom/Face/" + contactInfo.sprite_name;
         itemImage.sprite = Resources.Load<Sprite>(spriteName);
     }
 
 
     private void ButtonListener()
     {
-        for(int i=0;i< face_count; i++)
-        {
-            if (_contactInfo.num == i)
-            {
-                GameObject.FindGameObjectWithTag("FacePanel").transform.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("FacePanel").transform.GetChild(i).gameObject.SetActive(false);
-            }
+        Transform face = GameObject.Find("PlayerFace").transform.Find("Face");
+        face.gameObject.SetActive(true);
+        Image faceImage = face.gameObject.GetComponent<Image>();
+        if (faceImage != null) {
+            faceImage.sprite = Resources.Load<Sprite>(spriteName);
         }
     }
-
-
 }

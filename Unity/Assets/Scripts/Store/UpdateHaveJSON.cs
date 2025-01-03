@@ -16,7 +16,7 @@ public class UpdateHaveJSON : MonoBehaviour
         HouseInventoryData inventoryItem = itemListCS.GetComponent<HouseInventoryJSON>().inventoryItem;
         if (type == 0)//°¡±¸
         {
-            inventoryItem.furnitureList[num].have = true;
+            inventoryItem.furnitureItemList[num].have = true;
         }
         else if(type == 1)
         {

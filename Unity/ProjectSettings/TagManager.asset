@@ -18,6 +18,9 @@ TagManager:
   - HairPanel
   - ShirtPanel
   - PantsPanel
+  - WallItem
+  - FloorItem
+  - ItemStructures
   layers:
   - Default
   - TransparentFX

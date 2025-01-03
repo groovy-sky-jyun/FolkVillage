@@ -1,2 +1,0 @@
-scrollview overflow 막기
-- https://stackoverflow.com/questions/38927541/how-to-make-a-unity-scroll-rect-not-overflow

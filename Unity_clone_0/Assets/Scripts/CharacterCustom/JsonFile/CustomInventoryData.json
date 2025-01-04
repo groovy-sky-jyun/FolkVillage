@@ -1,0 +1,202 @@
+{
+    "faceItemList": [
+        {
+            "type": 0,
+            "num": 0,
+            "name": "기본 얼굴 1",
+            "sprite_name": "eye_1",
+            "sprite": {
+                "instanceID": 42060
+            },
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 0,
+            "num": 1,
+            "name": "기본 얼굴 2",
+            "sprite_name": "eye_2",
+            "sprite": {
+                "instanceID": 42062
+            },
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 0,
+            "num": 2,
+            "name": "기본 얼굴 3",
+            "sprite_name": "eye_3",
+            "sprite": {
+                "instanceID": 42058
+            },
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 0,
+            "num": 3,
+            "name": "기본 얼굴 4",
+            "sprite_name": "eye_4",
+            "sprite": {
+                "instanceID": 42064
+            },
+            "have": true,
+            "use_check": false,
+            "price": 0
+        }
+    ],
+    "hairItemList": [
+        {
+            "type": 1,
+            "num": 0,
+            "name": "남자 헤어 1",
+            "sprite_name": "hair_1",
+            "sprite": {
+                "instanceID": 41388
+            },
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 1,
+            "num": 1,
+            "name": "남자 헤어 2",
+            "sprite_name": "hair_2",
+            "sprite": {
+                "instanceID": 41392
+            },
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 1,
+            "num": 2,
+            "name": "여자 헤어 1",
+            "sprite_name": "hair_3",
+            "sprite": {
+                "instanceID": 41396
+            },
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 1,
+            "num": 3,
+            "name": "여자 헤어 2",
+            "sprite_name": "hair_4",
+            "sprite": {
+                "instanceID": 41404
+            },
+            "have": true,
+            "use_check": false,
+            "price": 0
+        }
+    ],
+    "shirtItemList": [
+        {
+            "type": 2,
+            "num": 0,
+            "name": "기본 티1",
+            "sprite_name": "shirt_1",
+            "sprite": {
+                "instanceID": 42066
+            },
+            "have": true,
+            "use_check": false,
+            "price": 5
+        },
+        {
+            "type": 2,
+            "num": 1,
+            "name": "기본 티2",
+            "sprite_name": "shirt_2",
+            "sprite": {
+                "instanceID": 42068
+            },
+            "have": true,
+            "use_check": false,
+            "price": 10
+        },
+        {
+            "type": 2,
+            "num": 2,
+            "name": "기본 티3",
+            "sprite_name": "shirt_3",
+            "sprite": {
+                "instanceID": 42056
+            },
+            "have": true,
+            "use_check": false,
+            "price": 15
+        },
+        {
+            "type": 2,
+            "num": 3,
+            "name": "기본 티4",
+            "sprite_name": "shirt_4",
+            "sprite": {
+                "instanceID": 42070
+            },
+            "have": true,
+            "use_check": false,
+            "price": 15
+        }
+    ],
+    "pantsItemList": [
+        {
+            "type": 3,
+            "name": "기본 바지 1",
+            "sprite_name": "pants_1",
+            "sprite": {
+                "instanceID": 42072
+            },
+            "num": 0,
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 3,
+            "name": "기본 바지 2",
+            "sprite_name": "pants_2",
+            "sprite": {
+                "instanceID": 42054
+            },
+            "num": 1,
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 3,
+            "name": "기본 바지 3",
+            "sprite_name": "pants_3",
+            "sprite": {
+                "instanceID": 42074
+            },
+            "num": 2,
+            "have": true,
+            "use_check": false,
+            "price": 0
+        },
+        {
+            "type": 3,
+            "name": "기본 바지 4",
+            "sprite_name": "pants_4",
+            "sprite": {
+                "instanceID": 42076
+            },
+            "num": 3,
+            "have": true,
+            "use_check": false,
+            "price": 0
+        }
+    ]
+}

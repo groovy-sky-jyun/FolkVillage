@@ -11,8 +11,8 @@ using UnityEngine.UI;
 public class CoinSetting : MonoBehaviour
 {
     public string user_id;
-    string userDB = "http://localhost/folkvillage/coinSetting.php";
-    string updateDB = "http://localhost/folkvillage/coinUpdate.php";
+    string userDB = "http://localhost/folkvillage/userinfo/coinSetting.php";
+    string updateDB = "http://localhost/folkvillage/userinfo/coinUpdate.php";
     public GameObject coin_txt;
     public int coin;
     void Start()
@@ -34,8 +34,8 @@ public class CoinSetting : MonoBehaviour
         if (str!="fail")
         {
             coin_txt.GetComponent<Text>().text = str;
-            PlayerPrefs.SetString("coin",str);
             coin = int.Parse(str);
+            PlayerPrefs.SetInt("coin", coin);
         }
 
     }
@@ -43,6 +43,7 @@ public class CoinSetting : MonoBehaviour
    public void minusCoin(int price)
     {
         coin -= price;
+        PlayerPrefs.SetInt("coin", coin);
         //userinfo ø° coin update«œ±‚
         StartCoroutine(CoinUpdateDB(coin));
     }

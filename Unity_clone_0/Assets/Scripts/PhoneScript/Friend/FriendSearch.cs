@@ -16,8 +16,8 @@ public class FriendSearch : MonoBehaviour
     public Image girl;
     public Text btn_text;
 
-    string FriendSearchURL = "http://localhost/friendSearch.php";
-    string FriendApplyURL = "http://localhost/friendApply.php";
+    string FriendSearchURL = "http://localhost/folkVillage/phoneFriend/friendSearch.php";
+    string FriendApplyURL = "http://localhost/folkVillage/phoneFriend/friendApply.php";
 
     string from_user_id;
 

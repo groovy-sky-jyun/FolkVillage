@@ -711,7 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sendBefore: {fileID: 1035376832192906975}
   sendAfter: {fileID: 6055274554358474330}
-  nickname: {fileID: 7516502028777518861}
+  friendName: {fileID: 7516502028777518861}
 --- !u!1 &5892615979116945978
 GameObject:
   m_ObjectHideFlags: 0

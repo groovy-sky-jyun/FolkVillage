@@ -143,7 +143,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
                 if ( num!= localNum)
                 {
                     float distance = Vector2.Distance(transform.position, playerGroup[i].transform.position);
-                    Debug.Log("local: " + transform.position + " /other: " + playerGroup[i].transform.position);
+                    //Debug.Log("local: " + transform.position + " /other: " + playerGroup[i].transform.position);
                     if (distance > 4f)
                     {
                         playerGroup[i].transform.GetChild(2).GetChild(0).gameObject.SetActive(false);

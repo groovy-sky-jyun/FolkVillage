@@ -7,6 +7,9 @@ using UnityEngine.UIElements;
 
 public class PhoneChangeScreen : MonoBehaviour
 {
+    public GameObject alarm1;
+    public GameObject alarm2;
+
     GameObject main = null;
     GameObject friend_list = null;
     GameObject friend_search = null;
@@ -114,6 +117,9 @@ public class PhoneChangeScreen : MonoBehaviour
 
         message_record = transform.Find("MessageRecordPanel").gameObject;
         message_record.SetActive(false);
+
+        alarm1.SetActive(false);
+        alarm2.SetActive(false);
     }
 
     public void MessageListOnClick()

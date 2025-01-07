@@ -10,52 +10,54 @@ using UnityEngine.UI;
 
 public class SendHeartGift : MonoBehaviour
 {
-    string user_id;
-    string friend_id;
-    string friend_name;
-    string sendHeartDB = "http://localhost/sendHeartGift.php";
-    string getNickDB = "http://localhost/friendID.php";
     public GameObject sendBefore;
     public GameObject sendAfter;
-    public Text nickname;
+    public Text friendName;
+
+    private string user_id;
+    private string friend_id;
+    private string sendHeartDB = "http://localhost/folkVillage/heart/sendHeartGift.php";
+    private string getFriend_id = "http://localhost/folkVillage/phoneFriend/friendID.php";
+
 
     public void HeartBtnOnClick()
     {
         user_id= PlayerPrefs.GetString("user_id");
+
         //하트 색상 변경 & 버튼 선택 비활성화
         sendBefore.SetActive(false);
         sendAfter.SetActive(true);
         sendAfter.gameObject.GetComponent<Button>().interactable = false;
-        //닉네임으로 친구 아이디 가져오기
-        friend_name = nickname.text;
-        StartCoroutine(GetIdDB(friend_name));
+
+        //메시지로 선물 보내기
+        string friend_name = friendName.text;
+        StartCoroutine(getFriendID(friend_name));
     }
     
-    IEnumerator GetIdDB(string friend_name)
+    IEnumerator getFriendID(string friend_name)
     {
+        //1.닉네임으로 친구 아이디 가져오기
         WWWForm form = new WWWForm();
         form.AddField("nicknamePost", friend_name);
-        UnityWebRequest www = UnityWebRequest.Post(getNickDB, form);
+        UnityWebRequest www = UnityWebRequest.Post(getFriend_id, form);
 
         yield return www.SendWebRequest();
-        string str = www.downloadHandler.text;
-        Debug.Log(str);
-        if (str != "fail")
+        string response = www.downloadHandler.text;
+        Debug.Log(response);
+        if (response != "fail")
         {
-            friend_id = str;
-            Debug.Log(friend_id);
-            //UPDATE send_gift=1 & INSERT messagerecord "sendheart_gift"
-            StartCoroutine(SendGiftDB(user_id, friend_id));
+            friend_id = response;
+            StartCoroutine(SendGiftMessage());
         }
 
     }
-    IEnumerator SendGiftDB(string user_id,string friend_id)
+    IEnumerator SendGiftMessage()
     {
+        //2. 메시지로 선물 보내기
         WWWForm form = new WWWForm();
         form.AddField("user_idPost", user_id);
         form.AddField("friend_idPost", friend_id);
         form.AddField("textPost", "sendHeart_gift");
-        form.AddField("timePost", DateTime.Now.ToString(("yyyy-MM-dd-HH-mm-ss")));
         UnityWebRequest www = UnityWebRequest.Post(sendHeartDB, form);
 
         yield return www.SendWebRequest();

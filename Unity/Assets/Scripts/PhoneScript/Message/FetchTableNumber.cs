@@ -17,10 +17,10 @@ public class FetchTableNumber : MonoBehaviour
     public Transform parent;
     int table_number;
     int message_count;
-    string FriendIDURL = "http://localhost/friendID.php";
-    string MessageNumberDB = "http://localhost/messageNumber.php";
-    string MessageRecordDB = "http://localhost/messageRecord.php";
-    string MessageUpdateDB = "http://localhost/messageRecordUpdate.php";
+    string FriendIDURL = "http://localhost/folkVillage/phoneFriend/friendID.php";
+    string MessageNumberDB = "http://localhost/folkVillage/phoneMessage/messageNumber.php";
+    string MessageRecordDB = "http://localhost/folkVillage/phoneMessage/messageRecord.php";
+    string MessageUpdateDB = "http://localhost/folkVillage/phoneMessage/messageRecordUpdate.php";
     string[][] recordTable;
     string[][] recordTable2;
     public GameObject contentObj;
@@ -29,11 +29,13 @@ public class FetchTableNumber : MonoBehaviour
     string name;
     string[] str2;
 
-    //화면 활성화되면 table number 가져온다 -> messagerecord DB에서 내용 가져와서 보여준다.
-    private void OnEnable()//누구와의 채팅목록인지 알아야하기 때문
+    //화면 활성화
+    //1. 대화 상대 아이디 가져옴
+    //2. db table number 가져옴 
+    private void OnEnable()
     {
        user_id=PlayerPrefs.GetString("user_id");
-       name = PlayerPrefs.GetString("messageFriend");
+       
 
         //만약 content의 자식 오브젝트(prefab)가 1개이상이라면 다 지움
         int count = contentObj.gameObject.transform.childCount;
@@ -68,6 +70,7 @@ public class FetchTableNumber : MonoBehaviour
             friend_id = text;
             //table number와  message_count 가져온다.
             StartCoroutine(FetchListDB(user_id, friend_id));
+            Debug.Log("friend id : " + text);
         }
         else
             Debug.Log("FriendID 가져오기 실패");
@@ -87,12 +90,27 @@ public class FetchTableNumber : MonoBehaviour
         string text = www.downloadHandler.text;
         if (text != "fail")
         {
+            int Trimresult = 0;
             string[] arr = text.Split(',');
-            table_number = int.Parse(arr[0]);
-            message_count = int.Parse(arr[1]);
-            //record prefab 생성하는 함수 작성
+   
+            int.TryParse(arr[0], out Trimresult);
+            if(Trimresult > 0)
+            {
+                table_number = Trimresult;
+            }
+            int.TryParse(arr[1], out Trimresult);
+            if (Trimresult >= 0)
+            {
+                message_count = Trimresult;
+            }
+   
+            // message_count가 0이상이면 문자 기록이 있으므로 record prefab 생성하는 함수 작성
             //messagerecordDB에서 table number가 같은 행을 다 가져온다.
-            StartCoroutine(FetchRecordtDB(table_number, user_id, friend_id));
+            if(message_count > 0)
+            {
+                StartCoroutine(FetchRecordtDB(table_number, user_id, friend_id));
+            }
+            
         }
         else
             Debug.Log("message number 가져오기 실패");

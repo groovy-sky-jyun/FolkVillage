@@ -8,7 +8,7 @@ public class NickNameSetting : MonoBehaviour
     public Text friendNickname;
     public void FriendNickSetting()
     {
-        friendNickname.text=PlayerPrefs.GetString("messageFriend");
+        friendNickname.text=PlayerPrefs.GetString("friend_nickname");
     }
 
     // Update is called once per frame

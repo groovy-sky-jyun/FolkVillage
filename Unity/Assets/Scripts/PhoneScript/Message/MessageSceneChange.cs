@@ -27,7 +27,7 @@ public class MessageSceneChange : MonoBehaviour
         friendNickName = parentFriendListBtn.GetComponentInChildren<Text>().text;*/
         friendNickName = nickname_txt.GetComponent<Text>().text;
         //친구 닉네임 게임 내 저장
-        PlayerPrefs.SetString("messageFriend", friendNickName);
+        PlayerPrefs.SetString("friend_nickname", friendNickName);
         Debug.Log(friendNickName);
         //화면전환
         GameObject parentObj = GameObject.Find("ChangeScreenCS");

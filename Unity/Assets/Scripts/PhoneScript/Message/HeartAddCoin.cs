@@ -13,8 +13,8 @@ public class HeartAddCoin : MonoBehaviour
     string user_id;
     string friend_id;
     int coin;
-    string heartCoinDB = "http://localhost/friendListUpdateGift.php";
-    string checkHeartDB = "http://localhost/checkAcceptHeart.php";
+    string heartCoinDB = "http://localhost/folkVillage/phoneMessage/friendListUpdateGift.php";
+    string checkHeartDB = "http://localhost/folkVillage/phoneMessage/checkAcceptHeart.php";
     public GameObject heartAddBtn;
     GameObject coinText;
 

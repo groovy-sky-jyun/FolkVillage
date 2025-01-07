@@ -12,14 +12,15 @@ public class FriendList : MonoBehaviour
     public Text alarm_text;
     public GameObject contentObj;
 
-    string user_id;
-    
-    string FriendSearchURL = "http://localhost/friendList.php";
+    private string user_id;
+    private string FriendSearchURL = "http://localhost/folkVillage/phoneFriend/friendList.php";
 
     private void Start()
     {
         alarm_text.gameObject.SetActive(true);
     }
+
+    //친구목록 버튼 클릭 -> 친구 리스트 가져오기
     public void FriendBtnOnClick()
     {
         user_id = PlayerPrefs.GetString("user_id");
@@ -41,14 +42,14 @@ public class FriendList : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("user_idPost", user_id);
 
-
+        // 친구 목록 이 있는지 확인 후 가져오기
         UnityWebRequest www = UnityWebRequest.Post(FriendSearchURL, form);
 
         yield return www.SendWebRequest();
         string text = www.downloadHandler.text;
        
         Debug.Log(text);
-       if (text != "fail")
+       if (text != "null")
         {
             alarm_text.gameObject.SetActive(false);
             string[] arr = text.Split(',');
@@ -71,7 +72,7 @@ public class FriendList : MonoBehaviour
         }
         else
         {
-            Debug.Log(text);
+            Debug.Log("친구 목록 없음");
             alarm_text.gameObject.SetActive(true);
         }
        

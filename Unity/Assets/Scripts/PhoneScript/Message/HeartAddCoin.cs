@@ -48,8 +48,7 @@ public class HeartAddCoin : MonoBehaviour
     }
     public void HeartAddOnClick()
     {
-        
-        coin=int.Parse(PlayerPrefs.GetString("coin"))+5;
+        coin = PlayerPrefs.GetInt("coin") + 5;
         StartCoroutine(UpdateCoinDB(user_id, friend_id, coin));
     }
 

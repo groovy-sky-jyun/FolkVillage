@@ -12,6 +12,7 @@ public class FriendApplyList : MonoBehaviour
     public GameObject prefab;
     public Transform parent;
     public GameObject contentObj;
+    public Text alarm_text;
 
     private string user_id;
     private string checkList = "http://localhost/folkVillage/phoneFriend/friendApplyCheckList.php";
@@ -19,6 +20,7 @@ public class FriendApplyList : MonoBehaviour
     void Start()
     {
         user_id = PlayerPrefs.GetString("user_id");
+        alarm_text.gameObject.SetActive(true);
 
         //이전에 생성한 prefab이 있다면 전부 삭제
         int count = contentObj.gameObject.transform.childCount;
@@ -88,8 +90,12 @@ public class FriendApplyList : MonoBehaviour
                 {
                     Debug.Log("친구신청 성별 이미지 객체 찾을 수 없음");
                 }
-                
-            }  
+            }
+            alarm_text.gameObject.SetActive(false);
+        }
+        else
+        {
+            alarm_text.gameObject.SetActive(true);
         }
     }
 }

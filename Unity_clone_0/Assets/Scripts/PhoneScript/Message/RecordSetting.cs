@@ -1,13 +1,7 @@
-using Photon.Pun.Demo.Cockpit;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 using Text = UnityEngine.UI.Text;
 
 public class RecordSetting : MonoBehaviour

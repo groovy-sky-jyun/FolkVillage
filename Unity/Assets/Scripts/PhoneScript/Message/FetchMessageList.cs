@@ -11,9 +11,9 @@ using Text = UnityEngine.UI.Text;
 public class FetchMessageList : MonoBehaviour
 {
     public GameObject prefab;
-    public GameObject hint;
     public Transform parent;
     public GameObject content;
+    public Text alarm_text;
 
     private string user_id;
     private List<string[]> listData = new List<string[]>();
@@ -56,7 +56,8 @@ public class FetchMessageList : MonoBehaviour
     private void OnEnable()
     {
        user_id=PlayerPrefs.GetString("user_id");
-      
+        alarm_text.gameObject.SetActive(true);
+
         //만약 Scroll Viewport의 Content의 자식 오브젝트(prefab)가 1개이상이라면 다 지움
         int count = content.gameObject.transform.childCount;
         if (count > 0)//이전의 생성된 prefab이 있다는 뜻
@@ -174,9 +175,11 @@ public class FetchMessageList : MonoBehaviour
 
     IEnumerator PreFabSetting()
     {
+        alarm_text.gameObject.SetActive(false);
+
         //닉네임 가져와서 프리팹 생성
         //recordData => [0]:상대아이디 [1]:문자내용 [2]:문자시간 [3]:읽었는지
-        for(int i=0;  i<recordData.Count; i++) {
+        for (int i=0;  i<recordData.Count; i++) {
             WWWForm form = new WWWForm();
             form.AddField("friendIDPost", recordData[i][0]);
             UnityWebRequest www = UnityWebRequest.Post(getFriend_nickname, form);
@@ -222,10 +225,6 @@ public class FetchMessageList : MonoBehaviour
                     alarmTransform.gameObject.SetActive(false);
             }
             else { Debug.Log("메시지 리스트 프리팹: fail to found alarm transform"); }
-        }
-
-
-
-        
+        } 
     }
 }

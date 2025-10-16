@@ -641,6 +641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nickname: {fileID: 8012679838903539138}
   acceptBtn: {fileID: 2712831919200161906}
+  selfPrefab: {fileID: 1725891320790282834}
 --- !u!1 &5626535397920581620
 GameObject:
   m_ObjectHideFlags: 0

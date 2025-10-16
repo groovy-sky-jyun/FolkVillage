@@ -8,6 +8,7 @@ public class FriendAcceptBtn : MonoBehaviour
 {
     public Text nickname;
     public Button acceptBtn;
+    public GameObject selfPrefab;
 
     private string user_id;
     private string friend_id;
@@ -63,7 +64,7 @@ public class FriendAcceptBtn : MonoBehaviour
             string text = www.downloadHandler.text;
             if (text != "fail")
             {
-                Debug.Log("친구 수락 성공");
+                Destroy(selfPrefab);
             }
             else
             {

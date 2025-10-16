@@ -15,11 +15,41 @@ public class FriendSearch : MonoBehaviour
     public Image boy;
     public Image girl;
     public Text btn_text;
+    public GameObject applyAlarm;
 
-    string FriendSearchURL = "http://localhost/folkVillage/phoneFriend/friendSearch.php";
-    string FriendApplyURL = "http://localhost/folkVillage/phoneFriend/friendApply.php";
+    private string user_id;
+    private string FriendSearchURL = "http://localhost/folkVillage/phoneFriend/friendSearch.php";
+    private string FriendApplyURL = "http://localhost/folkVillage/phoneFriend/friendApply.php";
+    private string ApplyFriend = "http://localhost/folkVillage/phoneFriend/friendApplyCheckList.php";
+    private string from_user_id;
 
-    string from_user_id;
+    private void Start()
+    {
+        user_id = PlayerPrefs.GetString("user_id");
+        applyAlarm.SetActive(false);
+        StartCoroutine(CheckApply());
+    }
+    IEnumerator CheckApply()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("idPost", user_id);
+
+        // 친구 목록 이 있는지 확인 후 가져오기
+        UnityWebRequest www = UnityWebRequest.Post(ApplyFriend, form);
+
+        yield return www.SendWebRequest();
+        string text = www.downloadHandler.text;
+
+        Debug.Log(text);
+        if (text != "null") //친구 신청이 있다는 뜻
+        {
+            applyAlarm.SetActive(true);
+        }
+        else if (text == "fail")
+        {
+            Debug.Log("failed to check the applyfriend list");
+        }
+    }
 
     public void OnConnectedToServer()
     {
